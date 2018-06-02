@@ -1,0 +1,22 @@
+.fret {
+  background: #9d6654;
+  height: 100%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  border-left: 2px solid silver;
+}
+
+.fret:first-child {
+  border-left: 6px solid bisque;
+}
+
+.marker {
+  width: 19px;
+  height: 19px;
+  border-radius: 20px;
+  background-color: #212121;
+  position: absolute;
+  top: 46%;
+  left: 40%
+}

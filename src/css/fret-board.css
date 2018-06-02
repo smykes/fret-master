@@ -1,0 +1,16 @@
+.fret-board {
+  width: 975px;
+  margin: 20px auto;
+}
+
+.Guitar {
+  height: 252px;
+}
+
+.Bass.Guitar {
+  height: 170px;
+}
+
+.Mandolin, .Ukulele {
+  width: 840px;
+}

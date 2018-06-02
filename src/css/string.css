@@ -1,0 +1,60 @@
+.string {
+  height: 42px;
+  width: 100%;
+  opacity: 0.4;
+  border-top: 2px solid rgba(0, 0, 0, .05);
+  box-sizing: border-box;
+  position: relative;
+  cursor: pointer;
+}
+
+.string:after {
+  content: '';
+  position: absolute;
+  bottom: 21px;
+  height: 6px;
+  width: 100%;
+  background: silver;
+  box-shadow: 0px 2px 4px black;
+  background: linear-gradient(to bottom, #cedce7 0%, #596a72 100%);
+}
+
+.string.correct-note {
+  background-color: green;
+}
+
+.string.active:after {
+  box-shadow: 0 4px 4px yellow, 0 -4px 4px yellow;
+}
+
+.string-5.string:after, .string-0.string:after {
+  height: 6px;
+}
+
+.string-4.string:after {
+  height: 5px;
+}
+
+.string-3.string:after {
+  height: 4px;
+}
+
+.string-2.string:after {
+  height: 3px;
+}
+
+.string-1.string:after {
+  height: 2px;
+}
+
+.string-0.string:after {
+  height: 1px;
+}
+
+.string:hover {
+  background: white;
+}
+
+.string:active {
+  background: moccasin;
+}
