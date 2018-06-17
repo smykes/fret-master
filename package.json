@@ -1,8 +1,8 @@
 {
   "name": "fret-master",
   "version": "0.1.0",
-  "private": true,
-  "homepage": "https://smykes.github.io/fret-master",
+  "private": false,
+  "homepage": "/dev/fret-master",
   "dependencies": {
     "gh-pages": "^1.2.0",
     "react": "^16.4.0",
