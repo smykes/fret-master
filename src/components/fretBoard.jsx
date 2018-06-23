@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
 import Fret from './fret.js';
 import '../css/fret-board.css';
-import {Instruments} from '../constants/instruments.js';
+import {getInstrumentByInstrumentId, getTuningByInstrumentIdAndTuningId} from '../methods.js'
 
 class FretBoard extends Component {
-    getInstrumentIndex(instrumentName) {
-      return Instruments.map(e => e.instrumentName).indexOf(instrumentName);
-    }
     render() {
         const instrumentStyle = `fret-board ${this.props.instrument}`;
-        console.log(this.props.instrument);
-        const frets = Instruments[this.getInstrumentIndex(this.props.instrument)].fretSpacing.map((number, index) => {
-          return <Fret
-                    key={index * number.width}
-                    width={number['width'] * 3}
-                    marker={number.marker === true ? 1 : 0}
-                    number={index+1}
-                    desiredString={this.props.desiredString}
-                    instrumentIndex={this.getInstrumentIndex(this.props.instrument)}
-                    clickHandler={this.props.clickHandler}/>
+        const instrument =  getInstrumentByInstrumentId(this.props.instrumentId);
+        const tuning = getTuningByInstrumentIdAndTuningId(this.props.instrumentId, this.props.tuningId);
+        const frets = instrument.fretSpacing.map((number, index) => {
+            console.log("Fret Number: " + index);
+            return <Fret
+                key={index * number.width}
+                tuning = {tuning}
+                width={number['width'] * 3}
+                marker={number.marker === true ? 1 : 0}
+                fretNumber={index+1}
+                desiredString={this.props.desiredString}
+                instrumentId={instrument.instrumentId}
+                clickHandler={this.props.clickHandler}/>
         });
         return (
             <div className={instrumentStyle}>{frets}</div>

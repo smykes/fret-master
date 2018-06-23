@@ -6,14 +6,18 @@ class String extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            string: props.name,
-            number: props.number,
+            string: props.stringNoteName,
+            number: props.fretNumber,
             stringNumber: props.stringNumber,
-            noteNames: Notes
+            noteNames: Notes,
+            tuning: props.tuning,
         };
         this.calculateNote = this.calculateNote.bind(this);
     }
     calculateNote() {
+        console.log(this.state.tuning);
+        console.log("State String:", this.state.string);
+        console.log("State String Number", this.state.stringNumber);
         // Find the name of the string note in the array and return the index.
         let indexOfStringInNoteNames = this.state.noteNames.indexOf(this.state.string.toUpperCase());
         // Add the number of frets to the index to get the new index
@@ -29,6 +33,9 @@ class String extends Component {
     }
 
     getStringClass() {
+        console.log(`------------------------------------`);
+        console.log(this.state.stringNumber);
+        console.log(this.props.desiredString);
       if (this.state.stringNumber === this.props.desiredString) {
         return `string string-${this.state.stringNumber} fret-${this.props.fretNumber} active`;
       }
@@ -38,6 +45,8 @@ class String extends Component {
         const stringClass = this.getStringClass();
         return (
             <div onClick={() => this.props.clickHandler(this.state.noteNames, this.state.number, this.state.string, this.state.stringNumber)} className={stringClass}></div>
+            // <div onClick={() => this.calculateNote()} className={stringClass}></div>
+
         );
     }
 }

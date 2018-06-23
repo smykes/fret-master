@@ -1,8 +1,9 @@
 .string-selector {
   margin: 0 auto;
   text-align: center;
-  label {
-    color: #fff;
-    font-size: 18px;
-  }
+}
+
+.string-selector label {
+  color: #fff;
+  font-size: 18px;
 }

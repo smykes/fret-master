@@ -10,19 +10,30 @@ class Fret extends Component {
       }
     }
     render() {
-
         const fretStyle = { 'width': this.props.width };
-        const strings = Instruments[this.props.instrumentIndex].defaultTuning.map((note, index) => {
-          return <String key={`${note}-${index}`} fretNumber={this.props.number} desiredString={this.props.desiredString} name={note} number={this.props.number} stringNumber={index} clickHandler={this.props.clickHandler}/>
+        const stringNames = this.props.tuning.stringNames;
+        const strings = stringNames.map((string, index) => {
+          console.log(this.props.fretNumber);
+          console.log(string)
+          return <String 
+                  key={index} 
+                  tuning={this.props.tuning} 
+                  fretNumber={this.props.fretNumber} 
+                  stringNoteName={string}
+                  desiredString={this.props.desiredString}
+                  stringNumber={index} clickHandler={this.props.clickHandler} />
         });
+
         const markers = this.getMarkers();
         return (
             <div className="fret" style={fretStyle}>
-              {markers}
-                {strings}
+            {markers}
+            {strings}
+              {/* {markers}
+                {strings} */}
             </div>
         );
-    }
+  }
 }
 
 export default Fret;

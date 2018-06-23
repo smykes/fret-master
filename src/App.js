@@ -7,32 +7,89 @@ import DesiredDisplay from './components/desiredDisplay.js';
 import StringToggle from './components/stringToggle.js';
 import Footer from './components/footer.js';
 import StartScreen from './components/startScreen';
+import TuningSelector from './components/tuningSelector';
 import {Instruments} from './constants/instruments.js';
+import {InstrumentConstants} from './constants/instrumentConstants.js';
 import {Notes} from './constants/notes.js';
+import {getInsturmentNameByInstrumentId, getInstrumentByInstrumentId, getTuningNameByInstrumentIdAndTuningId, getTuningByInstrumentIdAndTuningId} from './methods';
+
 
 
 class App extends Component {
     constructor(props) {
-        let instrument = 'Guitar';
+        let instrumentId = 0;
+        let tuningId = 0;
         super(props);
         this.state = {
             currentNote: '?',
-            instrument,
-            activeStrings: [0,1,2,3,4,5],
-            desiredString: 5,
+
             desiredNote: 'C',
             streak: 0,
             chosen: false,
+            tuning: false,
+            ///////////////////
+            instrumentId,
+            tuningId,
         };
 
         this.clickHandler = this.clickHandler.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.stringSelectorHandler = this.stringSelectorHandler.bind(this);
         this.handleInstrumentSelection = this.handleInstrumentSelection.bind(this);
+        this.getInstrumentList = this.getInstrumentList.bind(this);
+        this.handleTuningSelection = this.handleTuningSelection.bind(this);
+        this.handleGoBack = this.handleGoBack.bind(this);
     }
 
+    getInstrumentList() {
+      return InstrumentConstants;
+    }
+    getInstrumentByCurrentState() {
+      
+    }
+
+
+    getInstrumentByInstrumentName(name) {
+      return InstrumentConstants.find( instrument => instrument.instrumentName === name);
+    }
+
+    getInstrumentIdByInstrumentName(name) {
+      const instrument = InstrumentConstants.find( instrument => instrument.instrumentName === name);
+      return instrument.instrumentId;
+    }
+
+
+    getAllTuningsByInstrumentId(id) {
+      const instrument = InstrumentConstants.find( instrument => instrument.instrumentId === id);
+      return instrument.tunings;
+    }
+
+    getTuningByInstrumentIdAndTuningId(instrumentId, tuningId) {
+      const instrument = InstrumentConstants.find( instrument => instrument.instrumentId === instrumentId);
+      return instrument.tunings.find( tuning => tuning.tuningId === tuningId);
+    }
+
+    getStringCountByInstrumentIdAndTuningId(instrumentId, tuningId) {
+      const instrument = InstrumentConstants.find( instrument => instrument.instrumentId === instrumentId);
+      const tuning = instrument.tunings.find( tuning => tuning.tuningId === tuningId);
+      return tuning.stringCount;
+    }
+
+    getStringNamesByInstrumentIdAndTunungId(instrumentId, tuningId) {
+      const instrument = InstrumentConstants.find( instrument => instrument.instrumentId === instrumentId);
+      const tuning = instrument.tunings.find( tuning => tuning.tuningId === tuningId);
+      return tuning.stringNames;
+    }
+    handleTuningSelection(tuningId) {
+      const desiredString = getTuningByInstrumentIdAndTuningId(this.state.instrumentId, tuningId);
+      this.setState({tuningId, tuning: true, desiredString: desiredString.stringCount - 1})
+    }
+    handleGoBack() {
+      this.setState({ tuning: false, chosen: false})
+    }
     clickHandler(notes, number, string, stringNumber) {
-      const instrument = Instruments[Instruments.map(e => e.instrumentName).indexOf(this.state.instrument)];
+      console.log('Click Handler: ', notes, number, string, stringNumber);
+      const instrument = getInstrumentByInstrumentId(this.state.instrumentId);
       const clickedNote = this.calculateNote(notes, number, string);
 
       if (clickedNote === this.state.desiredNote && stringNumber === this.state.desiredString) {
@@ -66,11 +123,16 @@ class App extends Component {
         console.log(this.state.activeStrings);
       });
     }
-    handleInstrumentSelection(name) {
 
-      this.setState({instrument: name, chosen: true,}, () => {
-        const instrument = Instruments[Instruments.map(e => e.instrumentName).indexOf(this.state.instrument)];
-        this.setState({ desiredString: (instrument.defaultStringCount-1)});
+    handleInstrumentSelection(id) {
+      const instrument = getInstrumentByInstrumentId(id);
+
+      console.log(`Instrument ID: ${id}`)
+      console.log(`Instrument Name: ${instrument.instrumentName}`);
+
+      this.setState({instrumentId: id, chosen: true,}, () => {
+        const instrument = getInstrumentByInstrumentId(id);
+        this.setState({ desiredString: (instrument.defaultStringCount-1), activeStrings: this.getTuningByInstrumentIdAndTuningId(id, this.state.tuningId)});
       });
     }
     randomNumber(min, max) {
@@ -90,7 +152,9 @@ class App extends Component {
     }
 
     calculateFretByNote(instrument, desiredNote, desiredString) {
-      const stringName = instrument.defaultTuning[desiredString].toUpperCase();
+      console.log("desiredString", desiredString);
+      const tuning = getTuningByInstrumentIdAndTuningId(this.state.instrumentId, this.state.tuningId);
+      const stringName = tuning.stringNames[desiredString].toUpperCase();
       console.log(`String Name: ${stringName}`);
       const noteNames = Notes;
       const indexOfStringNameInNoteNames = noteNames.indexOf(stringName);
@@ -122,32 +186,37 @@ class App extends Component {
       return instrument['defaultTuning'];
     }
   render() {
-    const chosen = this.state.chosen ? '' : 'hidden';
+    const allInstruments = this.getInstrumentList();
+    const chosen = this.state.chosen && this.state.tuning ? '' : 'hidden';
+    const tuning = this.state.chosen && !this.state.tuning ? '' : 'hidden';
     const notChosen = this.state.chosen ? 'hidden' : '';
-    const stringToggles = this.getStrings().map((i,index) => <StringToggle key={`${i}-${index}`} stringNumber = {index} name={i} click={this.stringSelectorHandler} />);
+    // const stringToggles = this.getStrings().map((i,index) => <StringToggle key={`${i}-${index}`} stringNumber = {index} name={i} click={this.stringSelectorHandler} />);
     return (
       <div className="App">
-<div className={notChosen}>
-        <StartScreen instruments={Instruments} handleInstrumentSelection={this.handleInstrumentSelection}/></div>
-        <div className={chosen}>
-        <h4>
-          {this.state.instrument}
-        </h4>
-        <h5>
-          Current Streak: {this.state.streak}
-        </h5>
-
-          <FretBoard clickHandler={this.clickHandler} instrument={this.state.instrument} desiredString={this.state.desiredString}/>
+        <div className={notChosen}>
+          <StartScreen instruments={allInstruments} handleInstrumentSelection={this.handleInstrumentSelection}/>
+        </div>
+        <div className={tuning}>
+          <TuningSelector handleGoBack={this.handleGoBack} handleTuningSelection={this.handleTuningSelection} instrument={getInstrumentByInstrumentId(this.state.instrumentId)}/>
+        </div>
+        <section className={chosen} id='game'>
+          <h4>
+            {getInsturmentNameByInstrumentId(this.state.instrumentId)} - {getTuningNameByInstrumentIdAndTuningId(this.state.instrumentId, this.state.tuningId)}
+          </h4>
+          <h5>
+            Current Streak: {this.state.streak}
+          </h5>
+          <FretBoard clickHandler={this.clickHandler} instrumentId={this.state.instrumentId} tuningId={this.state.tuningId} desiredString={this.state.desiredString}/>
           <div className={'note-container'}>
             <DesiredDisplay note={this.state.desiredNote} stringNumber={this.state.desiredString + 1} />
             <NoteDisplay note={this.state.currentNote}/>
           </div>
           <div className={'string-selector'}>
-            <form className={'hidden'}>
-              {stringToggles}
+            <form>
+              {/* {stringToggles} */}
             </form>
           </div>
-        </div>
+        </section>
         <Footer />
       </div>
     );

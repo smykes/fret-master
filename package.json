@@ -16,5 +16,8 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "^17.0.0"
   }
 }

@@ -27,7 +27,15 @@
   box-shadow: 0 4px 4px yellow, 0 -4px 4px yellow;
 }
 
-.string-5.string:after, .string-0.string:after {
+.string-7.string:after,  {
+  height: 8px;
+}
+
+.string-6.string:after,  {
+  height: 7px;
+}
+
+.string-5.string:after,  {
   height: 6px;
 }
 

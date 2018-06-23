@@ -4,8 +4,13 @@ import InstrumentSelector from './instrumentSelector';
 
 class StartScreen extends Component {
     render() {
+
       const options = this.props.instruments.map((instrument, index) => {
-        return <InstrumentSelector key={index} icon={instrument.icon} name={instrument.instrumentName} handleInstrumentSelection={this.props.handleInstrumentSelection} />
+        return <InstrumentSelector key={index} 
+                                    instrumentIcon = {instrument.instrumentIcon} 
+                                    instrumentId = {instrument.instrumentId} 
+                                    name = {instrument.instrumentName} 
+                                    handleInstrumentSelection = {this.props.handleInstrumentSelection} />
       });
         return (
             <section className='start-screen'>

@@ -4,7 +4,7 @@ import '../css/footer.css';
 class Footer extends Component {
     render() {
         return (
-            <footer class="footer">
+            <footer className="footer">
               Guitar, Bass Guitar, Mandolin, and Braritone Ukulele icons by Datacrafted from the Noun Project<br />
               Created with 💝 in Chicago by Jeff Smykil
             </footer>
