@@ -338,8 +338,141 @@ const InstrumentConstants = [
                 stringNames: ['e','b','g','d']
             },
         ],
+    },
+    {
+        instrumentId: 4,
+        instrumentName: 'Charango',
+        instrumentIcon: 'icon-charango',
+        fretSpacing: [
+            {
+                width: 31.69,
+                marker: false
+            },
+            {
+                width: 29.591,
+                marker: false
+            },
+            {
+                width: 27.94,
+                marker: true
+            },
+            {
+                width: 26.3906,
+                marker: false
+            },
+            {
+                width: 24.892,
+                marker: true
+            },
+            {
+                width: 23.3934,
+                marker: false
+            },
+            {
+                width: 22.1742,
+                marker: true
+            },
+            {
+                width: 20.9296,
+                marker: false
+            },
+            {
+                width: 19.7612,
+                marker: false
+            },
+            {
+                width: 18.6436,
+                marker: false
+            },
+            {
+                width: 17.6022,
+                marker: false
+            },
+            {
+                width: 16.6116,
+                marker: true
+            },
+        ],
+        neckDimensions: {
+            4: { wwidth: 170, length: 840 },
+        },
+        tunings: [
+            {
+                tuningId: 0,
+                tuningName: 'Standard',
+                stirngCount: 5,
+                stringNames: ['e','a','e','c','g'],
+            },
+        ],
+    },
+    {
+        instrumentId: 5,
+        instrumentName: 'Baglamas',
+        instrumentIcon: 'icon-baglamas',
+        fretSpacing: [
+            {
+                width: 31.69,
+                marker: false
+            },
+            {
+                width: 29.591,
+                marker: false
+            },
+            {
+                width: 27.94,
+                marker: true
+            },
+            {
+                width: 26.3906,
+                marker: false
+            },
+            {
+                width: 24.892,
+                marker: true
+            },
+            {
+                width: 23.3934,
+                marker: false
+            },
+            {
+                width: 22.1742,
+                marker: true
+            },
+            {
+                width: 20.9296,
+                marker: false
+            },
+            {
+                width: 19.7612,
+                marker: false
+            },
+            {
+                width: 18.6436,
+                marker: false
+            },
+            {
+                width: 17.6022,
+                marker: false
+            },
+            {
+                width: 16.6116,
+                marker: true
+            },
+        ],
+        neckDimensions: {
+            4: { wwidth: 170, length: 840 },
+        },
+        tunings: [
+            {
+                tuningId: 0,
+                tuningName: 'Standard',
+                stirngCount: 3,
+                stringNames: ['a','d','g'],
+            },
+        ],
     }
 ]
+
 
 export {
   InstrumentConstants

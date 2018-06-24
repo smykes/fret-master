@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'fontello';
-  src: url('../font/fontello.eot?45842030');
-  src: url('../font/fontello.eot?45842030#iefix') format('embedded-opentype'),
-       url('../font/fontello.woff2?45842030') format('woff2'),
-       url('../font/fontello.woff?45842030') format('woff'),
-       url('../font/fontello.ttf?45842030') format('truetype'),
-       url('../font/fontello.svg?45842030#fontello') format('svg');
+  src: url('../font/fontello.eot?54349668');
+  src: url('../font/fontello.eot?54349668#iefix') format('embedded-opentype'),
+       url('../font/fontello.woff2?54349668') format('woff2'),
+       url('../font/fontello.woff?54349668') format('woff'),
+       url('../font/fontello.ttf?54349668') format('truetype'),
+       url('../font/fontello.svg?54349668#fontello') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'fontello';
-    src: url('../font/fontello.svg?45842030#fontello') format('svg');
+    src: url('../font/fontello.svg?54349668#fontello') format('svg');
   }
 }
 */
@@ -59,3 +59,5 @@
 .icon-guitar:before { content: '\e801'; } /* '' */
 .icon-mandolin:before { content: '\e802'; } /* '' */
 .icon-ukulele:before { content: '\e803'; } /* '' */
+.icon-baglamas:before { content: '\e804'; } /* '' */
+.icon-charango:before { content: '\e805'; } /* '' */
