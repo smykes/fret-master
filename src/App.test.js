@@ -189,6 +189,8 @@ it('getFretNumberByInstrumentIdTuningIdStringNumberAndNoteName', () => {
   expect(getFretNumberByInstrumentIdTuningIdStringNumberAndNoteName(1,0,0,'D')).toEqual(7);
   expect(getFretNumberByInstrumentIdTuningIdStringNumberAndNoteName(1,0,0,'D#/Eb')).toEqual(8);
   expect(getFretNumberByInstrumentIdTuningIdStringNumberAndNoteName(1,0,0,'E')).toEqual(9);
+
+  expect(getFretNumberByInstrumentIdTuningIdStringNumberAndNoteName(5,0,0,'E')).toEqual(7);
 });
 
 it('getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber', () => {

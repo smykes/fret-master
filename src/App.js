@@ -3,7 +3,7 @@ import "./App.css";
 import "./css/string-selector.css";
 import FretBoard from "./components/fretBoard.jsx";
 import NoteDisplay from "./components/noteDisplay.js";
-import DesiredDisplay from "./components/desiredDisplay.js";
+import DesiredDisplay from "./components/desiredDisplay.jsx";
 import Footer from "./components/footer.js";
 import StartScreen from "./components/startScreen";
 import TuningSelector from "./components/tuningSelector";

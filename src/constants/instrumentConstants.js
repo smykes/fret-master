@@ -400,7 +400,7 @@ const InstrumentConstants = [
             {
                 tuningId: 0,
                 tuningName: 'Standard',
-                stirngCount: 5,
+                stringCount: 5,
                 stringNames: ['e','a','e','c','g'],
             },
         ],
@@ -460,13 +460,13 @@ const InstrumentConstants = [
             },
         ],
         neckDimensions: {
-            4: { wwidth: 170, length: 840 },
+            3: { wwidth: 170, length: 840 },
         },
         tunings: [
             {
                 tuningId: 0,
                 tuningName: 'Standard',
-                stirngCount: 3,
+                stringCount: 3,
                 stringNames: ['a','d','g'],
             },
         ],

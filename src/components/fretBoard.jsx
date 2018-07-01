@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Fret from './fret.js';
+import Fret from './fret.jsx';
 import '../css/fret-board.css';
 import {getInstrumentByInstrumentId, getTuningByInstrumentIdAndTuningId} from '../methods.js'
+import PropTypes from 'prop-types';
 
 class FretBoard extends Component {
     render() {
@@ -9,7 +10,6 @@ class FretBoard extends Component {
         const instrument =  getInstrumentByInstrumentId(this.props.instrumentId);
         const tuning = getTuningByInstrumentIdAndTuningId(this.props.instrumentId, this.props.tuningId);
         const frets = instrument.fretSpacing.map((number, index) => {
-            console.log("Fret Number: " + index);
             return <Fret
                 key={index * number.width}
                 tuning = {tuning}
@@ -27,3 +27,11 @@ class FretBoard extends Component {
 }
 
 export default FretBoard;
+
+FretBoard.proptypes = {
+    instrumentId: PropTypes.number,
+    instrument: PropTypes.string,
+    tuningId: PropTypes.number,
+    desiredString: PropTypes.number,
+    clickHandler: PropTypes.func,
+}

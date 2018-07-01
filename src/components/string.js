@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../css/string.css';
 import {Notes} from '../constants/notes.js';
+import PropTypes from 'prop-types';
 
 class String extends Component {
     constructor(props) {
@@ -26,16 +27,11 @@ class String extends Component {
         let correctedIndex = (newIndex > 11) ? newIndex - 12 : newIndex;
 
         let noteName = this.state.noteNames[correctedIndex];
-
-        console.log("NOTE NAME: " + noteName);
-        console.log(`------------------------------------`);
         this.setState({currentNote: noteName});
     }
 
     getStringClass() {
-        console.log(`------------------------------------`);
-        console.log(this.state.stringNumber);
-        console.log(this.props.desiredString);
+
       if (this.state.stringNumber === this.props.desiredString) {
         return `string string-${this.state.stringNumber} fret-${this.props.fretNumber} active`;
       }
@@ -51,4 +47,13 @@ class String extends Component {
     }
 }
 
+String.proptypes = {
+    stringNoteName: PropTypes.string,
+    fretNumber: PropTypes.fretNumber,
+    stringNumber: PropTypes.stringNumber,
+    desiredString: PropTypes.number,
+    clickHandler: PropTypes.func,
+}
+
 export default String;
+

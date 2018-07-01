@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../css/desired-display.css';
+import PropTypes from 'prop-types';
 
 class DesiredDisplay extends Component {
     render() {
@@ -9,4 +10,8 @@ class DesiredDisplay extends Component {
     }
 }
 
+DesiredDisplay.proptypes = {
+    stringNumber: PropTypes.number,
+    note: PropTypes.string,
+}
 export default DesiredDisplay;

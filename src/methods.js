@@ -104,6 +104,7 @@ export function getFretNumberByInstrumentIdTuningIdStringNumberAndNoteName(
   stringNumber,
   noteName
 ) {
+  console.trace();
   const instrument = InstrumentConstants.find(
     instrument => instrument.instrumentId === instrumentId
   );

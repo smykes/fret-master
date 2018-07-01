@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../css/fret.css';
 import String from './string.js';
-import {Instruments} from '../constants/instruments.js';
+import PropTypes from 'prop-types';
 
 class Fret extends Component {
     getMarkers() {
@@ -13,8 +13,7 @@ class Fret extends Component {
         const fretStyle = { 'width': this.props.width };
         const stringNames = this.props.tuning.stringNames;
         const strings = stringNames.map((string, index) => {
-          console.log(this.props.fretNumber);
-          console.log(string)
+
           return <String 
                   key={index} 
                   tuning={this.props.tuning} 
@@ -37,3 +36,11 @@ class Fret extends Component {
 }
 
 export default Fret;
+
+
+Fret.proptypes = {
+  tuning: PropTypes.number,
+  fretNumber: PropTypes.string,
+  desiredStrnig: PropTypes.number,
+  clickHandler: PropTypes.func,
+}
