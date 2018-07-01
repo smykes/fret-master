@@ -18,7 +18,9 @@ class FretBoard extends Component {
                 fretNumber={index+1}
                 desiredString={this.props.desiredString}
                 instrumentId={instrument.instrumentId}
-                clickHandler={this.props.clickHandler}/>
+                tuningId={this.props.tuningId}
+                clickHandler={this.props.clickHandler}
+            />
         });
         return (
             <div className={instrumentStyle}>{frets}</div>

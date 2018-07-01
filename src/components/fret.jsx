@@ -12,22 +12,35 @@ class Fret extends Component {
     render() {
         const fretStyle = { 'width': this.props.width };
         const stringNames = this.props.tuning.stringNames;
-        const strings = stringNames.map((string, index) => {
-
+        const strings = Object.keys(stringNames);
+        const string = strings.map((string, index) => {
           return <String 
                   key={index} 
                   tuning={this.props.tuning} 
                   fretNumber={this.props.fretNumber} 
-                  stringNoteName={string}
+                  stringNoteName={stringNames[string]}
                   desiredString={this.props.desiredString}
-                  stringNumber={index} clickHandler={this.props.clickHandler} />
-        });
+                  stringNumber={index} 
+                  clickHandler={this.props.clickHandler}
+                  tuningId = {this.props.tuningId}
+                  instrumentId = {this.props.instrumentId} />
+          });
+        // const strings = stringNames.map((string, index) => {
+
+        //   return <String 
+        //           key={index} 
+        //           tuning={this.props.tuning} 
+        //           fretNumber={this.props.fretNumber} 
+        //           stringNoteName={string}
+        //           desiredString={this.props.desiredString}
+        //           stringNumber={index} clickHandler={this.props.clickHandler} />
+        // });
 
         const markers = this.getMarkers();
         return (
             <div className="fret" style={fretStyle}>
             {markers}
-            {strings}
+            {string}
               {/* {markers}
                 {strings} */}
             </div>

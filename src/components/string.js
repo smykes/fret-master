@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../css/string.css';
 import {Notes} from '../constants/notes.js';
 import PropTypes from 'prop-types';
+import {getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber} from '../methods.js'
 
 class String extends Component {
     constructor(props) {
@@ -12,6 +13,7 @@ class String extends Component {
             stringNumber: props.stringNumber,
             noteNames: Notes,
             tuning: props.tuning,
+            debug: false,
         };
         this.calculateNote = this.calculateNote.bind(this);
     }
@@ -39,8 +41,14 @@ class String extends Component {
     }
     render() {
         const stringClass = this.getStringClass();
+        const note = this.state.debug ? getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(this.props.instrumentId, this.props.tuningId, this.props.stringNumber, this.props.fretNumber) : '';
         return (
-            <div onClick={() => this.props.clickHandler(this.state.noteNames, this.state.number, this.state.string, this.state.stringNumber)} className={stringClass}></div>
+            <div onClick={() => this.props.clickHandler(
+                this.state.noteNames, 
+                this.state.number, 
+                this.state.string, 
+                this.state.stringNumber)} 
+                className={stringClass}><div className='label'>{note}</div></div>
             // <div onClick={() => this.calculateNote()} className={stringClass}></div>
 
         );

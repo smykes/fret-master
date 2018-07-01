@@ -6,6 +6,14 @@
   box-sizing: border-box;
   position: relative;
   cursor: pointer;
+
+}
+.string .label {
+  position: relative;
+  font-size: 8px;
+  z-index: 2;
+  
+  text-align: center;
 }
 
 .string:after {

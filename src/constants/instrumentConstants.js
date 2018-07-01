@@ -63,43 +63,58 @@ const InstrumentConstants = [
                 tuningId: 0,
                 tuningName: 'Standard',
                 stringCount: 6,
-                stringNames: ['e','b','g','d','a','e'],
+                stringNames: {
+                    1: 'e',
+                    2: 'b',
+                    3: 'g',
+                    4: 'd',
+                    5: 'a',
+                    6: 'e'
+                }
             },
+        
             {
                 tuningId: 1,
                 tuningName: 'Dropped D',
                 stringCount: 6,
-                stringNames: ['e','b','g','d','a','d'],
-            },
-            {
+                stringNames: {                    
+                    1: 'e',
+                    2: 'b',
+                    3: 'g',
+                    4: 'd',
+                    5: 'a',
+                    6: 'd',
+                },
+            },{
                 tuningId: 2,
                 tuningName: 'Drop C',
                 stringCount: 6,
-                stringNames: ['d','a','f','c','g','c'],
-            },
-            {
-                tuningId: 3,
-                tuningName: 'Drop B',
-                stringCount: 6,
-                stringNames: ['c#','g#','e','b','f#','b'],
+                stringNames: {                    
+                    1: 'd',
+                    2: 'a',
+                    3: 'f',
+                    4: 'c',
+                    5: 'g',
+                    6: 'c',
+                },
             },
             {
                 tuningId: 4,
                 tuningName: 'Double Dropped D',
                 stringCount: 6,
-                stringNames: ['d','b','g','d','a','d'],
+                stringNames: {1:'d',2:'b',3:'g',4:'d',5:'a',6:'d'},
             },
             {
                 tuningId: 5,
                 tuningName: 'Open C',
                 stringCount: 7,
-                stringNames: ['e','c','g','c','g','c','g']
+                stringNames: {1:'e',2:'c',3:'g',4:'c',5:'g',6:'c',7:'g'}
             },
             {
                 tuningId: 6,
-                tuningName: '8 String Standard',
+                tuningName: '8 String Standard (Charlie Hunter Tuning)',
                 stringCount: 8,
-                stringNames: ['e','b','g','a','e','d','a','e']
+                stringNames: {1: 'e',2: 'b',3: 'g',4: 'a',5: 'e',6: 'd',7: 'a',8: 'e'}
             },
         ]
     },
@@ -167,311 +182,246 @@ const InstrumentConstants = [
                 tuningId: 0,
                 tuningName: 'Standard',
                 stringCount: 4,
-                stringNames: ['g','d','a','e'],
+                stringNames: {1:'g',2:'d',3:'a',4:'e'},
             },
             {
                 tuningId: 1,
                 tuningName: 'Drop D',
                 stringCount: 4,
-                stringNames: ['g','d','a','d'],
+                stringNames: {1:'g',2:'d',3:'a',4:'d'},
             },
             {
                 tuningId: 2,
                 tuningName: 'Drop C',
                 stringCount: 4,
-                stringNames: ['f','c','g','c'],
+                stringNames: {1:'f',2:'c',3:'g',4:'c'},
             },
             {
                 tuningId: 3,
                 tuningName: '5 String Standard',
                 stringCount: 5,
-                stringNames: ['g','d','a','e','b'],
+                stringNames: {1:'g',2:'d',3:'a',4:'e',5:'b'},
             },
             {
                 tuningId: 4,
                 tuningName: '5 String Tenor',
                 stringCount: 5,
-                stringNames: ['c','g','d','a','e'],
+                stringNames: {1: 'c',2: 'g',3: 'd',4: 'a',5: 'e'},
             },
             {
                 tuningId: 5,
                 tuningName: '6 String',
                 stringCount: 6,
-                stringNames: ['b','e','a','d','g','c'],
+                stringNames: {1: 'b',2: 'e',3: 'a',4: 'd',5: 'g',6: 'c'},
             },
         ],
     },
-    {
-        instrumentId: 2,
-        instrumentName: 'Mandolin',
-        instrumentIcon: 'icon-mandolin',
-        fretSpacing: [
-            {
-                width: 31.69,
-                marker: false
-            },
-            {
-                width: 29.591,
-                marker: false
-            },
-            {
-                width: 27.94,
-                marker: true
-            },
-            {
-                width: 26.3906,
-                marker: false
-            },
-            {
-                width: 24.892,
-                marker: true
-            },
-            {
-                width: 23.3934,
-                marker: false
-            },
-            {
-                width: 22.1742,
-                marker: true
-            },
-            {
-                width: 20.9296,
-                marker: false
-            },
-            {
-                width: 19.7612,
-                marker: false
-            },
-            {
-                width: 18.6436,
-                marker: false
-            },
-            {
-                width: 17.6022,
-                marker: false
-            },
-            {
-                width: 16.6116,
-                marker: true
-            }
-        ],
-        neckDimensions: {
-            4: { width: 170, length: 840 },
-        },
-        tunings: [
-            {
-                tuningId: 0, 
-                tuningName: 'Standard',
-                stringCount: 4,
-                stringNames: ['e','a','d','g'],
-            },
-        ],
-    },
-    {
-        instrumentId: 3,
-        instrumentName: 'Ukulele',
-        instrumentIcon: 'icon-ukulele',
-        fretSpacing: [
-            {
-                width: 31.69,
-                marker: false
-            },
-            {
-                width: 29.591,
-                marker: false
-            },
-            {
-                width: 27.94,
-                marker: true
-            },
-            {
-                width: 26.3906,
-                marker: false
-            },
-            {
-                width: 24.892,
-                marker: true
-            },
-            {
-                width: 23.3934,
-                marker: false
-            },
-            {
-                width: 22.1742,
-                marker: true
-            },
-            {
-                width: 20.9296,
-                marker: false
-            },
-            {
-                width: 19.7612,
-                marker: false
-            },
-            {
-                width: 18.6436,
-                marker: false
-            },
-            {
-                width: 17.6022,
-                marker: false
-            },
-            {
-                width: 16.6116,
-                marker: true
-            },
-        ],
-        neckDimensions: {
-            4: { wwidth: 170, length: 840 },
-        },
-        tunings: [
-            {
-                tuningId: 0,
-                tuningName: 'Concert',
-                stirngCount: 4,
-                stringNames: ['a','e','c','g'],
-            },
-            {
-                tuningId: 1,
-                tuningName: 'Baritone',
-                stringCount: 4,
-                stringNames: ['e','b','g','d']
-            },
-        ],
-    },
-    {
-        instrumentId: 4,
-        instrumentName: 'Charango',
-        instrumentIcon: 'icon-charango',
-        fretSpacing: [
-            {
-                width: 31.69,
-                marker: false
-            },
-            {
-                width: 29.591,
-                marker: false
-            },
-            {
-                width: 27.94,
-                marker: true
-            },
-            {
-                width: 26.3906,
-                marker: false
-            },
-            {
-                width: 24.892,
-                marker: true
-            },
-            {
-                width: 23.3934,
-                marker: false
-            },
-            {
-                width: 22.1742,
-                marker: true
-            },
-            {
-                width: 20.9296,
-                marker: false
-            },
-            {
-                width: 19.7612,
-                marker: false
-            },
-            {
-                width: 18.6436,
-                marker: false
-            },
-            {
-                width: 17.6022,
-                marker: false
-            },
-            {
-                width: 16.6116,
-                marker: true
-            },
-        ],
-        neckDimensions: {
-            4: { wwidth: 170, length: 840 },
-        },
-        tunings: [
-            {
-                tuningId: 0,
-                tuningName: 'Standard',
-                stringCount: 5,
-                stringNames: ['e','a','e','c','g'],
-            },
-        ],
-    },
-    {
-        instrumentId: 5,
-        instrumentName: 'Baglamas',
-        instrumentIcon: 'icon-baglamas',
-        fretSpacing: [
-            {
-                width: 31.69,
-                marker: false
-            },
-            {
-                width: 29.591,
-                marker: false
-            },
-            {
-                width: 27.94,
-                marker: true
-            },
-            {
-                width: 26.3906,
-                marker: false
-            },
-            {
-                width: 24.892,
-                marker: true
-            },
-            {
-                width: 23.3934,
-                marker: false
-            },
-            {
-                width: 22.1742,
-                marker: true
-            },
-            {
-                width: 20.9296,
-                marker: false
-            },
-            {
-                width: 19.7612,
-                marker: false
-            },
-            {
-                width: 18.6436,
-                marker: false
-            },
-            {
-                width: 17.6022,
-                marker: false
-            },
-            {
-                width: 16.6116,
-                marker: true
-            },
-        ],
-        neckDimensions: {
-            3: { wwidth: 170, length: 840 },
-        },
-        tunings: [
-            {
-                tuningId: 0,
-                tuningName: 'Standard',
-                stringCount: 3,
-                stringNames: ['a','d','g'],
-            },
-        ],
-    }
-]
+];
+   
+    // {
+    //     instrumentId: 3,
+    //     instrumentName: 'Ukulele',
+    //     instrumentIcon: 'icon-ukulele',
+    //     fretSpacing: [
+    //         {
+    //             width: 31.69,
+    //             marker: false
+    //         },
+    //         {
+    //             width: 29.591,
+    //             marker: false
+    //         },
+    //         {
+    //             width: 27.94,
+    //             marker: true
+    //         },
+    //         {
+    //             width: 26.3906,
+    //             marker: false
+    //         },
+    //         {
+    //             width: 24.892,
+    //             marker: true
+    //         },
+    //         {
+    //             width: 23.3934,
+    //             marker: false
+    //         },
+    //         {
+    //             width: 22.1742,
+    //             marker: true
+    //         },
+    //         {
+    //             width: 20.9296,
+    //             marker: false
+    //         },
+    //         {
+    //             width: 19.7612,
+    //             marker: false
+    //         },
+    //         {
+    //             width: 18.6436,
+    //             marker: false
+    //         },
+    //         {
+    //             width: 17.6022,
+    //             marker: false
+    //         },
+    //         {
+    //             width: 16.6116,
+    //             marker: true
+    //         },
+    //     ],
+    //     neckDimensions: {
+    //         4: { wwidth: 170, length: 840 },
+    //     },
+    //     tunings: [
+    //         {
+    //             tuningId: 0,
+    //             tuningName: 'Concert',
+    //             stirngCount: 4,
+    //             stringNames: ['a','e','c','g'],
+    //         },
+    //         {
+    //             tuningId: 1,
+    //             tuningName: 'Baritone',
+    //             stringCount: 4,
+    //             stringNames: ['e','b','g','d']
+    //         },
+    //     ],
+    // },
+    // {
+    //     instrumentId: 4,
+    //     instrumentName: 'Charango',
+    //     instrumentIcon: 'icon-charango',
+    //     fretSpacing: [
+    //         {
+    //             width: 31.69,
+    //             marker: false
+    //         },
+    //         {
+    //             width: 29.591,
+    //             marker: false
+    //         },
+    //         {
+    //             width: 27.94,
+    //             marker: true
+    //         },
+    //         {
+    //             width: 26.3906,
+    //             marker: false
+    //         },
+    //         {
+    //             width: 24.892,
+    //             marker: true
+    //         },
+    //         {
+    //             width: 23.3934,
+    //             marker: false
+    //         },
+    //         {
+    //             width: 22.1742,
+    //             marker: true
+    //         },
+    //         {
+    //             width: 20.9296,
+    //             marker: false
+    //         },
+    //         {
+    //             width: 19.7612,
+    //             marker: false
+    //         },
+    //         {
+    //             width: 18.6436,
+    //             marker: false
+    //         },
+    //         {
+    //             width: 17.6022,
+    //             marker: false
+    //         },
+    //         {
+    //             width: 16.6116,
+    //             marker: true
+    //         },
+    //     ],
+    //     neckDimensions: {
+    //         4: { wwidth: 170, length: 840 },
+    //     },
+    //     tunings: [
+    //         {
+    //             tuningId: 0,
+    //             tuningName: 'Standard',
+    //             stringCount: 5,
+    //             stringNames: ['e','a','e','c','g'],
+    //         },
+    //     ],
+    // },
+    // {
+    //     instrumentId: 5,
+    //     instrumentName: 'Baglamas',
+    //     instrumentIcon: 'icon-baglamas',
+    //     fretSpacing: [
+    //         {
+    //             width: 31.69,
+    //             marker: false
+    //         },
+    //         {
+    //             width: 29.591,
+    //             marker: false
+    //         },
+    //         {
+    //             width: 27.94,
+    //             marker: true
+    //         },
+    //         {
+    //             width: 26.3906,
+    //             marker: false
+    //         },
+    //         {
+    //             width: 24.892,
+    //             marker: true
+    //         },
+    //         {
+    //             width: 23.3934,
+    //             marker: false
+    //         },
+    //         {
+    //             width: 22.1742,
+    //             marker: true
+    //         },
+    //         {
+    //             width: 20.9296,
+    //             marker: false
+    //         },
+    //         {
+    //             width: 19.7612,
+    //             marker: false
+    //         },
+    //         {
+    //             width: 18.6436,
+    //             marker: false
+    //         },
+    //         {
+    //             width: 17.6022,
+    //             marker: false
+    //         },
+    //         {
+    //             width: 16.6116,
+    //             marker: true
+    //         },
+    //     ],
+    //     neckDimensions: {
+    //         3: { wwidth: 170, length: 840 },
+    //     },
+    //     tunings: [
+    //         {
+    //             tuningId: 0,
+    //             tuningName: 'Standard',
+    //             stringCount: 3,
+    //             stringNames: ['a','d','g'],
+    //         },
+    //     ],
+    // }
 
 
 export {

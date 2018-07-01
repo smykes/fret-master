@@ -18,7 +18,9 @@ import {
   getStringCountByInstrumentIdAndTuningId,
   getInstrumentList,
   getRandomNumber,
-  getNoteByNumber
+  getNoteByNumber,
+  getStringNamesByInstrumentIdAndTuningId,
+  getStringNameByInstrumentIdTuningIdAndStringNumber,
 } from "./methods";
 
 class App extends Component {
@@ -187,6 +189,7 @@ class App extends Component {
             )}
           </h4>
           <h5>Current Streak: {this.state.streak}</h5>
+          {/* <h6>Tuning: {getStringNamesByInstrumentIdAndTuningId(this.state.instrumentId, this.state.tuningId)}</h6> */}
           <FretBoard
             clickHandler={this.clickHandler}
             instrumentId={this.state.instrumentId}
@@ -197,6 +200,7 @@ class App extends Component {
             <DesiredDisplay
               note={this.state.desiredNote}
               stringNumber={this.state.desiredString + 1}
+              stringName={getStringNameByInstrumentIdTuningIdAndStringNumber(this.state.instrumentId, this.state.tuningId, this.state.desiredString)}
             />
             <NoteDisplay note={this.state.currentNote} />
           </div>

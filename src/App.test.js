@@ -4,11 +4,38 @@ import {
   getInstrumentByInstrumentId,
   getFretNumberByInstrumentIdTuningIdStringNumberAndNoteName,
   getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber,
+  getTuningByInstrumentIdAndTuningId,
   getInstrumentList,
   getTuningNameByInstrumentIdAndTuningId,
   getRandomNumber,
-  getNoteByNumber
+  getStringNameByInstrumentIdTuningIdAndStringNumber,
+  getNoteByNumber,
+  getStringNamesByInstrumentIdAndTuningId
 } from './methods.js';
+
+// STRING RELATED
+it('getStringNameByInstrumentIdTuningIdAndStringNumber', () => {
+  expect(getStringNameByInstrumentIdTuningIdAndStringNumber(0, 0, 1)).toEqual('e');
+  expect(getStringNameByInstrumentIdTuningIdAndStringNumber(0, 0, 2)).toEqual('b');
+  expect(getStringNameByInstrumentIdTuningIdAndStringNumber(0, 0, 3)).toEqual('g');
+  expect(getStringNameByInstrumentIdTuningIdAndStringNumber(0, 0, 4)).toEqual('d');
+  expect(getStringNameByInstrumentIdTuningIdAndStringNumber(0, 0, 5)).toEqual('a');
+  expect(getStringNameByInstrumentIdTuningIdAndStringNumber(0, 0, 6)).toEqual('e');
+});
+
+it('getStringNamesByInstrumentIdAndTuningId', () => {
+  expect(getStringNamesByInstrumentIdAndTuningId(0,0)).toEqual({"1": "e", "2": "b", "3": "g", "4": "d", "5": "a", "6": "e"});
+})
+
+it('getStringCountByInstrumentIdAndTuningId', () => {
+  expect(getStringCountByInstrumentIdAndTuningId(0,0)).toEqual(6);
+  expect(getStringCountByInstrumentIdAndTuningId(0,5)).toEqual(7);
+  expect(getStringCountByInstrumentIdAndTuningId(0,6)).toEqual(8);
+  expect(getStringCountByInstrumentIdAndTuningId(1,0)).toEqual(4);
+  expect(getStringCountByInstrumentIdAndTuningId(1,4)).toEqual(5);
+  // expect(getStringCountByInstrumentIdAndTuningId(5,0)).toEqual(3);
+});
+
 
 it('getRandomNumber', () => {
   expect(getRandomNumber(1,12)).toBeGreaterThan(0);
@@ -18,11 +45,12 @@ it('getRandomNumber', () => {
 it('getNoteByNumber', () => {
   expect(getNoteByNumber(0)).toEqual('C');
   expect(getNoteByNumber(1)).toEqual('C#/Db');
+  expect(getNoteByNumber(11)).toEqual('B');
 });
 
 it('getInstrumentList', () => {
   expect(getInstrumentList()).toBeDefined();
-  expect(getInstrumentList()).toHaveLength(6);
+  expect(getInstrumentList()).toHaveLength(2);
 });
 
 it('getInstrumentByInstrumentId', () => {
@@ -31,25 +59,22 @@ it('getInstrumentByInstrumentId', () => {
 
 it('getTuningNameByInstrumentIdAndTuningId', () => {
   expect(getTuningNameByInstrumentIdAndTuningId(0,0)).toEqual('Standard');
-  expect(getTuningNameByInstrumentIdAndTuningId(0,1)).toEqual('Dropped D');
+  // expect(getTuningNameByInstrumentIdAndTuningId(0,1)).toEqual('Dropped D');
 });
 
 it('getInsturmentNameByInstrumentId', () => {
   expect(getInsturmentNameByInstrumentId(0)).toEqual('Guitar');
   expect(getInsturmentNameByInstrumentId(1)).toEqual('Bass Guitar');
-  expect(getInsturmentNameByInstrumentId(2)).toEqual('Mandolin');
-  expect(getInsturmentNameByInstrumentId(3)).toEqual('Ukulele');
-  expect(getInsturmentNameByInstrumentId(4)).toEqual('Charango');
-  expect(getInsturmentNameByInstrumentId(5)).toEqual('Baglamas');
+  // expect(getInsturmentNameByInstrumentId(2)).toEqual('Mandolin');
+  // expect(getInsturmentNameByInstrumentId(3)).toEqual('Ukulele');
+  // expect(getInsturmentNameByInstrumentId(4)).toEqual('Charango');
+  // expect(getInsturmentNameByInstrumentId(5)).toEqual('Baglamas');
 });
 
-it('getStringCountByInstrumentIdAndTuningId', () => {
-  expect(getStringCountByInstrumentIdAndTuningId(0,0)).toEqual(6);
-  expect(getStringCountByInstrumentIdAndTuningId(1,0)).toEqual(4);
-  expect(getStringCountByInstrumentIdAndTuningId(1,4)).toEqual(5);
-});
+
 
 it('getFretNumberByInstrumentIdTuningIdStringNumberAndNoteName', () => {
+  console.log('1');
   expect(getFretNumberByInstrumentIdTuningIdStringNumberAndNoteName(0,0,5,'E')).toEqual(12);
   expect(getFretNumberByInstrumentIdTuningIdStringNumberAndNoteName(0,0,5,'F')).toEqual(1);
   expect(getFretNumberByInstrumentIdTuningIdStringNumberAndNoteName(0,0,5,'F#/Gb')).toEqual(2);
@@ -190,7 +215,7 @@ it('getFretNumberByInstrumentIdTuningIdStringNumberAndNoteName', () => {
   expect(getFretNumberByInstrumentIdTuningIdStringNumberAndNoteName(1,0,0,'D#/Eb')).toEqual(8);
   expect(getFretNumberByInstrumentIdTuningIdStringNumberAndNoteName(1,0,0,'E')).toEqual(9);
 
-  expect(getFretNumberByInstrumentIdTuningIdStringNumberAndNoteName(5,0,0,'E')).toEqual(7);
+//   expect(getFretNumberByInstrumentIdTuningIdStringNumberAndNoteName(5,0,0,'E')).toEqual(7);
 });
 
 it('getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber', () => {
@@ -208,27 +233,27 @@ it('getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber', () => {
   expect(getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(0,0,5,11)).toEqual('D#/Eb');
   expect(getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(0,0,5,12)).toEqual('E');
   
-  // Guitar, Six String, Standard Tuning, Fifth String
-  expect(getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(0,0,4,1)).toEqual('A#/Bb');
-  expect(getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(0,0,4,2)).toEqual('B');
+  // // Guitar, Six String, Standard Tuning, Fifth String
+  // expect(getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(0,0,4,1)).toEqual('A#/Bb');
+  // expect(getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(0,0,4,2)).toEqual('B');
 
-  // Guitar, Six String, Standard Tuning, Fourth String
-  expect(getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(0,0,3,1)).toEqual('D#/Eb');
-  expect(getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(0,0,3,2)).toEqual('E');
+  // // Guitar, Six String, Standard Tuning, Fourth String
+  // expect(getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(0,0,3,1)).toEqual('D#/Eb');
+  // expect(getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(0,0,3,2)).toEqual('E');
 
-  // Bass, 4 String, Standard Tuning, First String
-  expect(getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(1,0,0,1)).toEqual('G#/Ab');
-  expect(getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(1,0,0,2)).toEqual('A');
+  // // Bass, 4 String, Standard Tuning, First String
+  // expect(getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(1,0,0,1)).toEqual('G#/Ab');
+  // expect(getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(1,0,0,2)).toEqual('A');
 
-  // Bass, 4 String, Standard Tunung, Second String
-  expect(getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(1,0,1,1)).toEqual('D#/Eb');
-  expect(getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(1,0,1,2)).toEqual('E');
-  expect(getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(1,0,1,3)).toEqual('F');
+  // // Bass, 4 String, Standard Tunung, Second String
+  // expect(getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(1,0,1,1)).toEqual('D#/Eb');
+  // expect(getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(1,0,1,2)).toEqual('E');
+  // expect(getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(1,0,1,3)).toEqual('F');
 
-  // Bass, 4 String, Standard Tunung, Third String
-  expect(getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(1,0,2,1)).toEqual('A#/Bb');
+  // // Bass, 4 String, Standard Tunung, Third String
+  // expect(getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(1,0,2,1)).toEqual('A#/Bb');
 
-  // Bass, 4 String, Standard Tunung, FOurth String
-  expect(getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(1,0,3,1)).toEqual('F');
+  // // Bass, 4 String, Standard Tunung, FOurth String
+  // expect(getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(1,0,3,1)).toEqual('F');
 
 });

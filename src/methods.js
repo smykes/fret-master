@@ -74,6 +74,26 @@ export function getTuningNameByInstrumentIdAndTuningId(instrumentId, tuningId) {
 }
 
 /**
+ * 
+ * @param {*} instrumentId 
+ * @param {*} tuningId 
+ * @param {*} stringNumber 
+ */
+export function getStringNameByInstrumentIdTuningIdAndStringNumber(
+  instrumentId,
+  tuningId,
+  stringNumber
+) {
+  const instrument = InstrumentConstants.find(
+    instrument => instrument.instrumentId === instrumentId
+  );
+  const tuning = instrument.tunings.find(
+    tuning => tuning.tuningId === tuningId
+  );
+  return tuning.stringNames[stringNumber];
+}
+
+/**
  *
  * @param {number} instrumentId
  * @param {number} tuningId
@@ -92,6 +112,24 @@ export function getStringCountByInstrumentIdAndTuningId(
 }
 
 /**
+ * 
+ * @param {number} instrumentId 
+ * @param {number} tuningId 
+ */
+export function getStringNamesByInstrumentIdAndTuningId(
+  instrumentId, 
+  tuningId
+) {
+  const instrument = InstrumentConstants.find(
+    instrument => instrument.instrumentId === instrumentId
+  );
+  const tuning = instrument.tunings.find(
+    tuning => tuning.tuningId === tuningId
+  );
+
+  return tuning.stringNames;
+}
+/**
  *
  * @param {number} instrumentId
  * @param {number} tuningId
@@ -104,14 +142,13 @@ export function getFretNumberByInstrumentIdTuningIdStringNumberAndNoteName(
   stringNumber,
   noteName
 ) {
-  console.trace();
   const instrument = InstrumentConstants.find(
     instrument => instrument.instrumentId === instrumentId
   );
   const tuning = instrument.tunings.find(
     tuning => tuning.tuningId === tuningId
   );
-  const stringName = tuning.stringNames[stringNumber].toUpperCase();
+  const stringName = tuning.stringNames[stringNumber + 1].toUpperCase();
   const stringNameIndex = Notes.indexOf(stringName);
   const noteNameNameIndex = Notes.indexOf(noteName);
 
@@ -134,7 +171,7 @@ export function getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(
   fretNumber
 ) {
   const tuning = getTuningByInstrumentIdAndTuningId(instrumentId, tuningId);
-  const stringName = tuning.stringNames[stringNumber].toUpperCase();
+  const stringName = tuning.stringNames[stringNumber + 1].toUpperCase();
 
   // Where the string name falls in the chromatic scale
   const stringNameIndex = Notes.indexOf(stringName);

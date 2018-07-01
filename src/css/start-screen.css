@@ -1,8 +1,21 @@
 .start-screen {
   color: white;
   text-align: center;
+  font-family: 'Permanent Marker', cursive;
+
 }
 
 .start-screen h3 {
   text-align: center;
+  margin-bottom: 25px;
+}
+
+button {
+  background: transparent;
+  color: white;
+  font-family: 'Permanent Marker', cursive;
+}
+button:hover {
+  background: white;
+  color: black;
 }

@@ -12,6 +12,7 @@ class DesiredDisplay extends Component {
 
 DesiredDisplay.proptypes = {
     stringNumber: PropTypes.number,
+    stringName: PropTypes.string,
     note: PropTypes.string,
 }
 export default DesiredDisplay;

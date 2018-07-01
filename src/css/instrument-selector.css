@@ -3,9 +3,9 @@
   height: 190px;
   border: 4px solid white;
   margin-top: 10px;
-  margin: auto 10px;
   display: inline-block;
   font-size: 24px;
+  margin-bottom: 20px;
 }
 .instrument-selector i {
   font-family: 'fontello';
