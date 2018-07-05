@@ -220,6 +220,8 @@ class App extends Component {
 
     const showGameStatisticsScreen = this.state.isGameEnded ? 'game-score' : 'hidden game-score';
 
+    const statistics = this.state.isGameEnded ? <GameStatisticsScreen instrumentId={this.state.instrumentId} tuningId={this.state.tuningId} errors={this.state.errors}/> : '' ;
+
     return (
       <div className="App">
         <section className={showStartScreen}>
@@ -277,7 +279,7 @@ class App extends Component {
           </div>
         </section>
         <section className={showGameStatisticsScreen}>
-            <GameStatisticsScreen instrumentId={this.state.instrumentId} tuningId={this.state.tuningId} errors={this.state.errors}/>
+            {statistics}
         </section>
         <Footer />
       </div>
