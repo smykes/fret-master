@@ -1,5 +1,5 @@
 import {
-  getInsturmentNameByInstrumentId,
+  getInstrumentNameByInstrumentId,
   getStringCountByInstrumentIdAndTuningId,
   getInstrumentByInstrumentId,
   getFretNumberByInstrumentIdTuningIdStringNumberAndNoteName,
@@ -50,7 +50,7 @@ it('getNoteByNumber', () => {
 
 it('getInstrumentList', () => {
   expect(getInstrumentList()).toBeDefined();
-  expect(getInstrumentList()).toHaveLength(2);
+  expect(getInstrumentList()).toHaveLength(3);
 });
 
 it('getInstrumentByInstrumentId', () => {
@@ -63,8 +63,8 @@ it('getTuningNameByInstrumentIdAndTuningId', () => {
 });
 
 it('getInsturmentNameByInstrumentId', () => {
-  expect(getInsturmentNameByInstrumentId(0)).toEqual('Guitar');
-  expect(getInsturmentNameByInstrumentId(1)).toEqual('Bass Guitar');
+  expect(getInstrumentNameByInstrumentId(0)).toEqual('Guitar');
+  expect(getInstrumentNameByInstrumentId(1)).toEqual('Bass Guitar');
   // expect(getInsturmentNameByInstrumentId(2)).toEqual('Mandolin');
   // expect(getInsturmentNameByInstrumentId(3)).toEqual('Ukulele');
   // expect(getInsturmentNameByInstrumentId(4)).toEqual('Charango');
