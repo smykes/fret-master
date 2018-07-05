@@ -216,80 +216,79 @@ const InstrumentConstants = [
             },
         ],
     },
-];
-   
-    // {
-    //     instrumentId: 3,
-    //     instrumentName: 'Ukulele',
-    //     instrumentIcon: 'icon-ukulele',
-    //     fretSpacing: [
-    //         {
-    //             width: 31.69,
-    //             marker: false
-    //         },
-    //         {
-    //             width: 29.591,
-    //             marker: false
-    //         },
-    //         {
-    //             width: 27.94,
-    //             marker: true
-    //         },
-    //         {
-    //             width: 26.3906,
-    //             marker: false
-    //         },
-    //         {
-    //             width: 24.892,
-    //             marker: true
-    //         },
-    //         {
-    //             width: 23.3934,
-    //             marker: false
-    //         },
-    //         {
-    //             width: 22.1742,
-    //             marker: true
-    //         },
-    //         {
-    //             width: 20.9296,
-    //             marker: false
-    //         },
-    //         {
-    //             width: 19.7612,
-    //             marker: false
-    //         },
-    //         {
-    //             width: 18.6436,
-    //             marker: false
-    //         },
-    //         {
-    //             width: 17.6022,
-    //             marker: false
-    //         },
-    //         {
-    //             width: 16.6116,
-    //             marker: true
-    //         },
-    //     ],
-    //     neckDimensions: {
-    //         4: { wwidth: 170, length: 840 },
-    //     },
-    //     tunings: [
-    //         {
-    //             tuningId: 0,
-    //             tuningName: 'Concert',
-    //             stirngCount: 4,
-    //             stringNames: ['a','e','c','g'],
-    //         },
-    //         {
-    //             tuningId: 1,
-    //             tuningName: 'Baritone',
-    //             stringCount: 4,
-    //             stringNames: ['e','b','g','d']
-    //         },
-    //     ],
-    // },
+    {
+        instrumentId: 3,
+        instrumentName: 'Ukulele',
+        instrumentIcon: 'icon-ukulele',
+        fretSpacing: [
+            {
+                width: 31.69,
+                marker: false
+            },
+            {
+                width: 29.591,
+                marker: false
+            },
+            {
+                width: 27.94,
+                marker: true
+            },
+            {
+                width: 26.3906,
+                marker: false
+            },
+            {
+                width: 24.892,
+                marker: true
+            },
+            {
+                width: 23.3934,
+                marker: false
+            },
+            {
+                width: 22.1742,
+                marker: true
+            },
+            {
+                width: 20.9296,
+                marker: false
+            },
+            {
+                width: 19.7612,
+                marker: false
+            },
+            {
+                width: 18.6436,
+                marker: false
+            },
+            {
+                width: 17.6022,
+                marker: false
+            },
+            {
+                width: 16.6116,
+                marker: true
+            },
+        ],
+        neckDimensions: {
+            4: { wwidth: 170, length: 840 },
+        },
+        tunings: [
+            {
+                tuningId: 0,
+                tuningName: 'Concert',
+                stringCount: 4,
+                stringNames: {1:'a',2:'e',3:'c',4:'g'},
+            },
+            {
+                tuningId: 1,
+                tuningName: 'Baritone',
+                stringCount: 4,
+                stringNames: {1:'e',2:'b',3:'g',4:'d'}
+            },
+        ],
+    },
+]
     // {
     //     instrumentId: 4,
     //     instrumentName: 'Charango',

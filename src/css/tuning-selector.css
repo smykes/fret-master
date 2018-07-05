@@ -1,4 +1,5 @@
 
 div.tuning-selector-item {
     margin: 10px;
+    cursor: pointer;
 }

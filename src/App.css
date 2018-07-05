@@ -19,7 +19,7 @@ h4,h3 {
   margin-top: 0;
   margin-bottom: 0;
 }
-h5 {
+h5, h6 {
   color: white;
   text-align: center;
   font-size: 24px;
@@ -36,4 +36,10 @@ h5 {
 }
 .note-container div:last-child {
   margin-left: 5px;
+}
+
+.end-free-play {
+  text-align: center;
+  margin: 0 auto;
+  display: block;
 }

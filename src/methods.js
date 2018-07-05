@@ -19,6 +19,28 @@ export function getNoteByNumber(num) {
 }
 
 /**
+ * 
+ * @param {object} errorArray 
+ * @param {number} instrumentId 
+ * @param {number} tuningId 
+ */
+export function getChartDataByErrorArray(errorArray, instrumentId, tuningId) {
+  // find the number of strings on the instrument
+
+  const stringCount = getStringCountByInstrumentIdAndTuningId(instrumentId, tuningId);
+  function getCount(num) {
+    return errorArray.filter( error => error.string === num ).length;
+  }
+  const er = [];
+  for (var i = 1; i <= stringCount; i++) {
+    er.push({name: getStringNameByInstrumentIdTuningIdAndStringNumber(instrumentId, tuningId, i), count: getCount(i)});
+  }
+  console.log(er);
+
+  return er.reverse();
+}
+
+/**
  *
  */
 export function getInstrumentList() {
@@ -39,7 +61,7 @@ export function getInstrumentByInstrumentId(instrumentId) {
  *
  * @param {number} instrumentId
  */
-export function getInsturmentNameByInstrumentId(instrumentId) {
+export function getInstrumentNameByInstrumentId(instrumentId) {
   const instrument = InstrumentConstants.find(
     instrument => instrument.instrumentId === instrumentId
   );
@@ -74,10 +96,10 @@ export function getTuningNameByInstrumentIdAndTuningId(instrumentId, tuningId) {
 }
 
 /**
- * 
- * @param {*} instrumentId 
- * @param {*} tuningId 
- * @param {*} stringNumber 
+ *
+ * @param {*} instrumentId
+ * @param {*} tuningId
+ * @param {*} stringNumber
  */
 export function getStringNameByInstrumentIdTuningIdAndStringNumber(
   instrumentId,
@@ -112,12 +134,12 @@ export function getStringCountByInstrumentIdAndTuningId(
 }
 
 /**
- * 
- * @param {number} instrumentId 
- * @param {number} tuningId 
+ *
+ * @param {number} instrumentId
+ * @param {number} tuningId
  */
 export function getStringNamesByInstrumentIdAndTuningId(
-  instrumentId, 
+  instrumentId,
   tuningId
 ) {
   const instrument = InstrumentConstants.find(

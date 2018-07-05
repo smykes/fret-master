@@ -9,6 +9,7 @@
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-scripts": "1.1.4",
+    "recharts": "^1.0.1",
     "save": "^2.3.2"
   },
   "scripts": {

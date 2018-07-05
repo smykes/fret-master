@@ -18,9 +18,6 @@ class String extends Component {
         this.calculateNote = this.calculateNote.bind(this);
     }
     calculateNote() {
-        console.log(this.state.tuning);
-        console.log("State String:", this.state.string);
-        console.log("State String Number", this.state.stringNumber);
         // Find the name of the string note in the array and return the index.
         let indexOfStringInNoteNames = this.state.noteNames.indexOf(this.state.string.toUpperCase());
         // Add the number of frets to the index to get the new index
