@@ -25,14 +25,13 @@ class GameStatisticsScreen extends Component {
       this.props.tuningId
     );
     const data = getChartDataByErrorArray(this.props.errors, this.props.instrumentId, this.props.tuningId);
-
+    const percentage = Math.floor((errorCount / this.props.questionCount) * 100);
     return (
       <section className="statistics-screen">
         <h1>Fret Master</h1>
         Statistics
-        <div>Instrument: {instrumentName} </div>
-        <div>Tuning: {tuningName}</div>
-        <div>Number Wrong: {errorCount} </div>
+        <div>{instrumentName} - {tuningName}</div>
+        <div>Percentage Correct: {percentage}% </div>
         <BarChart
           width={600}
           height={300}

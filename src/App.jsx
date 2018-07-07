@@ -116,7 +116,8 @@ class App extends Component {
       const newStreak = this.state.streak;
       const randNo = getRandomNumber(0, 11);
       const randNote = getNoteByNumber(randNo);
-
+      let count = this.state.questionCount;
+      count = count +=1 ;
       this.setState({
         currentNote: getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(
           this.state.instrumentId,
@@ -126,7 +127,8 @@ class App extends Component {
         ),
         desiredString: newDesiredString,
         desiredNote: randNote,
-        streak: newStreak + 1
+        streak: newStreak + 1,
+        questionCount: count,
       });
     } else {
       this.error(
@@ -185,13 +187,15 @@ class App extends Component {
   }
 
   error(fretNumber, desiredString) {
+    let count = this.state.questionCount;
+    count += 1;
     let errors = this.state.errors;
     errors.push({string: desiredString + 1, fret: fretNumber});
     let correctFret = document.getElementsByClassName(
       `string-${desiredString} fret-${fretNumber}`
     )[0];
     correctFret.className += " correct-note";
-    this.setState({ currentNote: "😭", streak: 0, errors });
+    this.setState({ currentNote: "😭", streak: 0, errors, questionCount: count });
   }
 
   success() {}
@@ -234,7 +238,7 @@ class App extends Component {
 
     const showGameStatisticsScreen = this.state.isGameEnded ? 'game-score' : 'hidden game-score';
 
-    const statistics = this.state.isGameEnded ? <GameStatisticsScreen instrumentId={this.state.instrumentId} tuningId={this.state.tuningId} errors={this.state.errors}/> : '' ;
+    const statistics = this.state.isGameEnded ? <GameStatisticsScreen instrumentId={this.state.instrumentId} tuningId={this.state.tuningId} errors={this.state.errors} questionCount={this.state.questionCount}/> : '' ;
 
     return (
       <div className="App">
