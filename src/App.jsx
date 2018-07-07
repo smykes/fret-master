@@ -9,7 +9,8 @@ import StartScreen from "./components/startScreen";
 import TuningSelector from "./components/tuningSelector";
 import GameModeSelector from "./components/gameModeSelector";
 import GameStatisticsScreen from "./components/gameStatisticsScreen.jsx";
-import { Instruments } from "./constants/instruments.js";
+import { InstrumentConstants } from "./constants/instrumentConstants.js";
+
 import {
   getInstrumentByInstrumentId,
   getTuningNameByInstrumentIdAndTuningId,
@@ -23,6 +24,7 @@ import {
   getStringNameByInstrumentIdTuningIdAndStringNumber,
   getInstrumentNameByInstrumentId,
 } from "./methods";
+import { findValuesRemovedFromEnums } from "graphql/utilities/findBreakingChanges";
 
 class App extends Component {
   constructor(props) {
@@ -53,11 +55,23 @@ class App extends Component {
     this.handleGoBack = this.handleGoBack.bind(this);
     this.handleGameModeSelection = this.handleGameModeSelection.bind(this);
     this.handleEndFreePlayMode = this.handleEndFreePlayMode.bind(this);
+    this.handleTryAgain = this.handleTryAgain.bind(this);
   }
 
   /*-- Event Handlers --*/
+  handleTryAgain() {
+    this.setState({
+      isInstrumentChosen: false, 
+      isTuningChosen: false, 
+      isGameModeChosen: false, 
+      isGameEnded: false, 
+      questionCount: 0, 
+      errors: [], 
+      streak: 0})
+  }
+
   handleEndFreePlayMode() {
-    this.setState({isGameEnded: true, scoreScreen: true, chosen: false});
+    this.setState({isGameEnded: true, scoreScreen: true});
   }
   handleTuningSelection(tuningId) {
     console.log(tuningId);
@@ -159,8 +173,8 @@ class App extends Component {
 
   handleChange(event) {
     const instrument =
-      Instruments[
-        Instruments.map(e => e.instrumentName).indexOf(event.target.value)
+      InstrumentConstants[
+        InstrumentConstants.map(e => e.instrumentName).indexOf(event.target.value)
       ];
     const startString = instrument.defaultStringCount - 1;
     this.setState({
@@ -280,6 +294,7 @@ class App extends Component {
         </section>
         <section className={showGameStatisticsScreen}>
             {statistics}
+            <button className={'end-free-play'} onClick={this.handleTryAgain}>Try Again</button>
         </section>
         <Footer />
       </div>
