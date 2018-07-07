@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Howl} from "howler";
 import "./App.css";
 import "./css/string-selector.css";
 import FretBoard from "./components/fretBoard.jsx";
@@ -24,17 +25,29 @@ import {
   getStringNameByInstrumentIdTuningIdAndStringNumber,
   getInstrumentNameByInstrumentId,
 } from "./methods";
-import { findValuesRemovedFromEnums } from "graphql/utilities/findBreakingChanges";
 
 class App extends Component {
   constructor(props) {
     let instrumentId = 0;
     let tuningId = 0;
     super(props);
+    var sound = new Howl({
+      src: ['sounds/gogogo.ogg']
+    });
+    var errorSound = new Howl({
+      src: ['sounds/error.ogg']
+    });
+    var correctSound = new Howl({
+      src: ['sounds/correct.ogg']
+    });
+
     this.state = {
       currentNote: "?",
       desiredNote: "C",
       streak: 0,
+      sound,
+      errorSound,
+      correctSound,
       isInstrumentChosen: false,
       isTuningChosen: false,
       isGameModeChosen: false,
@@ -74,7 +87,8 @@ class App extends Component {
     this.setState({isGameEnded: true, scoreScreen: true});
   }
   handleTuningSelection(tuningId) {
-    console.log(tuningId);
+    this.state.sound.play();
+
     const desiredString = getTuningByInstrumentIdAndTuningId(
       this.state.instrumentId,
       tuningId
@@ -86,6 +100,7 @@ class App extends Component {
     });
   }
   handleGameModeSelection(mode = 'arcade') {
+    this.state.sound.play();
     this.setState({
       gameMode: mode,
       isGameModeChosen: true,
@@ -105,6 +120,7 @@ class App extends Component {
       clickedNote === this.state.desiredNote &&
       stringNumber === this.state.desiredString
     ) {
+      this.state.correctSound.play();
       const numberOfStrings = getStringCountByInstrumentIdAndTuningId(
         this.state.instrumentId,
         this.state.tuningId
@@ -161,6 +177,7 @@ class App extends Component {
    */
 
   handleInstrumentSelection(id) {
+    this.state.sound.play();
     this.setState({ instrumentId: id, isInstrumentChosen: true }, () => {
       const instrument = getInstrumentByInstrumentId(id);
       this.setState({
@@ -187,6 +204,7 @@ class App extends Component {
   }
 
   error(fretNumber, desiredString) {
+    this.state.errorSound.play();
     let count = this.state.questionCount;
     count += 1;
     let errors = this.state.errors;

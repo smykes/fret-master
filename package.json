@@ -5,6 +5,7 @@
   "homepage": "/dev/fret-master",
   "dependencies": {
     "gh-pages": "^1.2.0",
+    "howler": "^2.0.13",
     "prop-types": "^15.6.2",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
