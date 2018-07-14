@@ -28,7 +28,7 @@ class Fret extends Component {
     const strings = Object.keys(stringNames);
     const string = strings.map((indString, index) => (
       <String
-        key={`${desiredString}-${fretNumber}`}
+        key={index}
         tuning={tuning}
         fretNumber={fretNumber}
         stringNoteName={stringNames[indString]}
@@ -51,11 +51,11 @@ class Fret extends Component {
 }
 
 Fret.propTypes = {
-  tuning: PropTypes.number.isRequired,
-  fretNumber: PropTypes.string.isRequired,
-  desiredString: PropTypes.number.isRequired,
-  clickHandler: PropTypes.string.isRequired,
-  marker: PropTypes.string.isRequired,
+  tuning: PropTypes.object.isRequired,
+  fretNumber: PropTypes.number.isRequired,
+  desiredString: PropTypes.number,
+  clickHandler: PropTypes.func.isRequired,
+  marker: PropTypes.number.isRequired,
   width: PropTypes.number.isRequired,
   tuningId: PropTypes.number.isRequired,
   instrumentId: PropTypes.number.isRequired,
