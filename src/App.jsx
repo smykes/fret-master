@@ -5,7 +5,7 @@ import './css/string-selector.css';
 import FretBoard from './components/fretBoard';
 import NoteDisplay from './components/noteDisplay';
 import DesiredDisplay from './components/desiredDisplay';
-import Footer from './components/footer';
+import Footer from './components/footer.jsx';
 import StartScreen from './components/startScreen';
 import TuningSelector from './components/tuningSelector';
 import GameModeSelector from './components/gameModeSelector';

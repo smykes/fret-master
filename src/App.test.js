@@ -9,8 +9,8 @@ import {
   getRandomNumber,
   getStringNameByInstrumentIdTuningIdAndStringNumber,
   getNoteByNumber,
-  getStringNamesByInstrumentIdAndTuningId
-} from './methods.js';
+  getStringNamesByInstrumentIdAndTuningId,
+} from './methods';
 
 // STRING RELATED
 it('getStringNameByInstrumentIdTuningIdAndStringNumber', () => {

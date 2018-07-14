@@ -1,20 +1,41 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import '../css/game-mode.css';
 
-class GameModeSelector extends Component {
-    render() {
-        return (
-            <section className='game-mode'>
-              <h1>Fret Master</h1>
-              <h3>- Chose {this.props.instrument.instrumentName} Game Mode -</h3>
+const GameModeSelector = (props) => {
+  const {
+    instrument,
+    handleGameModeSelection,
+    handleGoBack,
+  } = props;
 
-                    <div className={'tuning-selector-item'} onClick={() => this.props.handleGameModeSelection('freeplay')}>Free Play</div>
-                    <div className={'tuning-selector-item'} onClick={() => this.props.handleGameModeSelection('arcade')}>Arcade</div>
+  return (
+    <section className="game-mode">
+      <h1>
+        Fret Master
+      </h1>
+      <h3>
+        - Chose
+        {instrument.instrumentName} 
+        Game Mode -
+      </h3>
+      <div className={'tuning-selector-item'} onClick={() => handleGameModeSelection('freeplay')}>
+        Free Play
+      </div>
+      <div className={'tuning-selector-item'} onClick={() => handleGameModeSelection('arcade')}>
+        Arcade
+      </div>
+      <button type="button" onClick={handleGoBack}>
+        Go Back
+      </button>
+    </section>
+  );
+};
 
-                <button onClick={this.props.handleGoBack}>Go Back</button>
-            </section>
-        );
-    }
-}
+GameModeSelector.propTypes = {
+  instrument: PropTypes.object.isRequired,
+  handleGameModeSelection: PropTypes.func.isRequired,
+  handleGoBack: PropTypes.func.isRequired,
+};
 
 export default GameModeSelector;

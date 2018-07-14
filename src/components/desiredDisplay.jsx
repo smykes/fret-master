@@ -1,21 +1,25 @@
-import React, { Component } from 'react';
-import '../css/desired-display.css';
+import React from 'react';
 import PropTypes from 'prop-types';
+import '../css/desired-display.css';
 
-class DesiredDisplay extends Component {
-  render() {
-    return (
-      <div className='desired-display'>
-        {this.props.stringNumber} | {this.props.note} 
-        <div>Round 1</div>
+const DesiredDisplay = (props) => {
+  const { stringNumber, note } = props;
+
+  return (
+    <div className="desired-display">
+      {stringNumber}
+      |
+      {note}
+      <div>
+        Round 1
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-DesiredDisplay.proptypes = {
-  stringNumber: PropTypes.number,
-  stringName: PropTypes.string,
-  note: PropTypes.string,
-}
+DesiredDisplay.propTypes = {
+  stringNumber: PropTypes.number.isRequired,
+  note: PropTypes.string.isRequired,
+};
+
 export default DesiredDisplay;

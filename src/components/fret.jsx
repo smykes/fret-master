@@ -23,25 +23,22 @@ class Fret extends Component {
       tuningId,
       instrumentId,
     } = this.props;
+    const { stringNames } = tuning;
     const fretStyle = { width };
-    const stringNames = tuning.stringNames;
     const strings = Object.keys(stringNames);
-    const string = strings.map((indString, index) => {
-      return (
-        <String
-          key={index} 
-          tuning={tuning}
-          fretNumber={fretNumber}
-          stringNoteName={stringNames[indString]}
-          desiredString={desiredString}
-          stringNumber={index}
-          clickHandler={clickHandler}
-          tuningId={tuningId}
-          instrumentId={instrumentId}
-        />
-      );
-    });
-
+    const string = strings.map((indString, index) => (
+      <String
+        key={`${desiredString}-${fretNumber}`}
+        tuning={tuning}
+        fretNumber={fretNumber}
+        stringNoteName={stringNames[indString]}
+        desiredString={desiredString}
+        stringNumber={index}
+        clickHandler={clickHandler}
+        tuningId={tuningId}
+        instrumentId={instrumentId}
+      />
+    ));
 
     const markers = this.getMarkers();
     return (
@@ -53,9 +50,6 @@ class Fret extends Component {
   }
 }
 
-export default Fret;
-
-
 Fret.propTypes = {
   tuning: PropTypes.number.isRequired,
   fretNumber: PropTypes.string.isRequired,
@@ -66,3 +60,5 @@ Fret.propTypes = {
   tuningId: PropTypes.number.isRequired,
   instrumentId: PropTypes.number.isRequired,
 };
+
+export default Fret;
