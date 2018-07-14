@@ -1,59 +1,68 @@
 import React, { Component } from 'react';
 import '../css/fret.css';
-import String from './string.js';
 import PropTypes from 'prop-types';
+import String from './string';
 
 class Fret extends Component {
-    getMarkers() {
-      if (this.props.marker) {
-        return <div className={'marker'}></div>
-      }
+  getMarkers() {
+    const { marker } = this.props;
+    let ret = '';
+    if (marker) {
+      ret = <div className="marker" />;
     }
-    render() {
-        const fretStyle = { 'width': this.props.width };
-        const stringNames = this.props.tuning.stringNames;
-        const strings = Object.keys(stringNames);
-        const string = strings.map((string, index) => {
-          return <String 
-                  key={index} 
-                  tuning={this.props.tuning} 
-                  fretNumber={this.props.fretNumber} 
-                  stringNoteName={stringNames[string]}
-                  desiredString={this.props.desiredString}
-                  stringNumber={index} 
-                  clickHandler={this.props.clickHandler}
-                  tuningId = {this.props.tuningId}
-                  instrumentId = {this.props.instrumentId} />
-          });
-        // const strings = stringNames.map((string, index) => {
+    return ret;
+  }
 
-        //   return <String 
-        //           key={index} 
-        //           tuning={this.props.tuning} 
-        //           fretNumber={this.props.fretNumber} 
-        //           stringNoteName={string}
-        //           desiredString={this.props.desiredString}
-        //           stringNumber={index} clickHandler={this.props.clickHandler} />
-        // });
+  render() {
+    const {
+      tuning,
+      width,
+      fretNumber,
+      desiredString,
+      clickHandler,
+      tuningId,
+      instrumentId,
+    } = this.props;
+    const fretStyle = { width };
+    const stringNames = tuning.stringNames;
+    const strings = Object.keys(stringNames);
+    const string = strings.map((indString, index) => {
+      return (
+        <String
+          key={index} 
+          tuning={tuning}
+          fretNumber={fretNumber}
+          stringNoteName={stringNames[indString]}
+          desiredString={desiredString}
+          stringNumber={index}
+          clickHandler={clickHandler}
+          tuningId={tuningId}
+          instrumentId={instrumentId}
+        />
+      );
+    });
 
-        const markers = this.getMarkers();
-        return (
-            <div className="fret" style={fretStyle}>
-            {markers}
-            {string}
-              {/* {markers}
-                {strings} */}
-            </div>
-        );
+
+    const markers = this.getMarkers();
+    return (
+      <div className="fret" style={fretStyle}>
+        {markers}
+        {string}
+      </div>
+    );
   }
 }
 
 export default Fret;
 
 
-Fret.proptypes = {
-  tuning: PropTypes.number,
-  fretNumber: PropTypes.string,
-  desiredStrnig: PropTypes.number,
-  clickHandler: PropTypes.func,
-}
+Fret.propTypes = {
+  tuning: PropTypes.number.isRequired,
+  fretNumber: PropTypes.string.isRequired,
+  desiredString: PropTypes.number.isRequired,
+  clickHandler: PropTypes.string.isRequired,
+  marker: PropTypes.string.isRequired,
+  width: PropTypes.number.isRequired,
+  tuningId: PropTypes.number.isRequired,
+  instrumentId: PropTypes.number.isRequired,
+};

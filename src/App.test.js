@@ -4,7 +4,6 @@ import {
   getInstrumentByInstrumentId,
   getFretNumberByInstrumentIdTuningIdStringNumberAndNoteName,
   getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber,
-  getTuningByInstrumentIdAndTuningId,
   getInstrumentList,
   getTuningNameByInstrumentIdAndTuningId,
   getRandomNumber,

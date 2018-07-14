@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import {Howl} from "howler";
-import "./App.css";
-import "./css/string-selector.css";
-import FretBoard from "./components/fretBoard.jsx";
-import NoteDisplay from "./components/noteDisplay.js";
-import DesiredDisplay from "./components/desiredDisplay.jsx";
-import Footer from "./components/footer.js";
-import StartScreen from "./components/startScreen";
-import TuningSelector from "./components/tuningSelector";
-import GameModeSelector from "./components/gameModeSelector";
-import GameStatisticsScreen from "./components/gameStatisticsScreen.jsx";
-import { InstrumentConstants } from "./constants/instrumentConstants.js";
+import React, { Component } from 'react';
+import { Howl } from 'howler';
+import './App.css';
+import './css/string-selector.css';
+import FretBoard from './components/fretBoard';
+import NoteDisplay from './components/noteDisplay';
+import DesiredDisplay from './components/desiredDisplay';
+import Footer from './components/footer';
+import StartScreen from './components/startScreen';
+import TuningSelector from './components/tuningSelector';
+import GameModeSelector from './components/gameModeSelector';
+import GameStatisticsScreen from './components/gameStatisticsScreen';
+import { InstrumentConstants } from './constants/instrumentConstants';
 
 import {
   getInstrumentByInstrumentId,
@@ -24,26 +24,26 @@ import {
   getNoteByNumber,
   getStringNameByInstrumentIdTuningIdAndStringNumber,
   getInstrumentNameByInstrumentId,
-} from "./methods";
+} from './methods';
 
 class App extends Component {
   constructor(props) {
-    let instrumentId = 0;
-    let tuningId = 0;
+    const instrumentId = 0;
+    const tuningId = 0;
     super(props);
-    var sound = new Howl({
-      src: ['sounds/gogogo.ogg']
+    const sound = new Howl({
+      src: ['sounds/gogogo.ogg'],
     });
-    var errorSound = new Howl({
-      src: ['sounds/error.ogg']
+    const errorSound = new Howl({
+      src: ['sounds/error.ogg'],
     });
-    var correctSound = new Howl({
-      src: ['sounds/correct.ogg']
+    const correctSound = new Howl({
+      src: ['sounds/correct.ogg'],
     });
 
     this.state = {
-      currentNote: "?",
-      desiredNote: "C",
+      currentNote: '?',
+      desiredNote: 'C',
       streak: 0,
       sound,
       errorSound,
@@ -55,9 +55,8 @@ class App extends Component {
       errors: [],
       questionCount: 0,
       gameMode: false, // game modes are freestyle or arcade
-      ///////////////////
       instrumentId,
-      tuningId
+      tuningId,
     };
 
     this.clickHandler = this.clickHandler.bind(this);
@@ -71,75 +70,91 @@ class App extends Component {
     this.handleTryAgain = this.handleTryAgain.bind(this);
   }
 
-  /*-- Event Handlers --*/
+  /* -- Event Handlers -- */
+
   handleTryAgain() {
     this.setState({
-      isInstrumentChosen: false, 
-      isTuningChosen: false, 
-      isGameModeChosen: false, 
-      isGameEnded: false, 
-      questionCount: 0, 
-      errors: [], 
-      streak: 0})
+      isInstrumentChosen: false,
+      isTuningChosen: false,
+      isGameModeChosen: false,
+      isGameEnded: false,
+      questionCount: 0,
+      errors: [],
+      streak: 0,
+    });
   }
 
   handleEndFreePlayMode() {
-    this.setState({isGameEnded: true, scoreScreen: true});
+    this.setState({ isGameEnded: true });
   }
+
   handleTuningSelection(tuningId) {
-    this.state.sound.play();
+    const { sound, instrumentId } = this.state;
+    sound.play();
 
     const desiredString = getTuningByInstrumentIdAndTuningId(
-      this.state.instrumentId,
-      tuningId
+      instrumentId,
+      tuningId,
     );
     this.setState({
       tuningId,
       isTuningChosen: true,
-      desiredString: desiredString.stringCount - 1
+      desiredString: desiredString.stringCount - 1,
     });
   }
+
   handleGameModeSelection(mode = 'arcade') {
-    this.state.sound.play();
+    const { sound } = this.state;
+    sound.play();
     this.setState({
       gameMode: mode,
       isGameModeChosen: true,
     });
   }
+
   handleGoBack() {
     this.setState({ isTuningChosen: false, isInstrumentChosen: false });
   }
+
   clickHandler(notes, number, string, stringNumber) {
+    const {
+      instrumentId,
+      tuningId,
+      desiredNote,
+      desiredString,
+      correctSound,
+      streak,
+      questionCount,
+    } = this.state;
     const clickedNote = getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(
-      this.state.instrumentId,
-      this.state.tuningId,
+      instrumentId,
+      tuningId,
       stringNumber,
-      number
+      number,
     );
     if (
-      clickedNote === this.state.desiredNote &&
-      stringNumber === this.state.desiredString
+      clickedNote === desiredNote
+      && stringNumber === desiredString
     ) {
-      this.state.correctSound.play();
+      correctSound.play();
       const numberOfStrings = getStringCountByInstrumentIdAndTuningId(
-        this.state.instrumentId,
-        this.state.tuningId
+        instrumentId,
+        tuningId,
       );
-      const newDesiredString =
-        this.state.desiredString - 1 >= 0
-          ? this.state.desiredString - 1
-          : numberOfStrings - 1;
-      const newStreak = this.state.streak;
+      const newDesiredString = (desiredString - 1) >= 0
+        ? desiredString - 1
+        : numberOfStrings - 1;
+      const newStreak = streak;
       const randNo = getRandomNumber(0, 11);
       const randNote = getNoteByNumber(randNo);
-      let count = this.state.questionCount;
-      count = count +=1 ;
+      let count = questionCount;
+      count = questionCount + 1;
       this.setState({
         currentNote: getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(
-          this.state.instrumentId,
-          this.state.tuningId,
+          instrumentId,
+          tuningId,
           stringNumber,
-          number
+          number,
         ),
         desiredString: newDesiredString,
         desiredNote: randNote,
@@ -149,114 +164,151 @@ class App extends Component {
     } else {
       this.error(
         getFretNumberByInstrumentIdTuningIdStringNumberAndNoteName(
-          this.state.instrumentId,
-          this.state.tuningId,
-          this.state.desiredString,
-          this.state.desiredNote
+          instrumentId,
+          tuningId,
+          desiredString,
+          desiredNote,
         ),
-        this.state.desiredString
+        desiredString,
       );
     }
   }
+
   stringSelectorHandler(name, stringNumber) {
-    const activeStrings = this.state.activeStrings;
+    const { activeStrings } = this.state;
     const index = activeStrings.indexOf(stringNumber);
     if (index !== -1) {
       activeStrings.splice(index, 1);
     } else {
       activeStrings.push(stringNumber);
     }
-    this.setState({ activeStrings: activeStrings.sort() }, () => {
-      console.log(this.state.activeStrings);
-    });
+    this.setState({ activeStrings: activeStrings.sort() });
   }
 
   /**
-   * 
+   *
    * @param {number} id instrumentId
    */
 
   handleInstrumentSelection(id) {
-    this.state.sound.play();
+    const { sound, tuningId } = this.state;
+    sound.play();
     this.setState({ instrumentId: id, isInstrumentChosen: true }, () => {
       const instrument = getInstrumentByInstrumentId(id);
       this.setState({
         desiredString: instrument.defaultStringCount - 1,
         activeStrings: getTuningByInstrumentIdAndTuningId(
           id,
-          this.state.tuningId
-        )
+          tuningId,
+        ),
       });
     });
   }
 
   handleChange(event) {
-    const instrument =
-      InstrumentConstants[
-        InstrumentConstants.map(e => e.instrumentName).indexOf(event.target.value)
-      ];
+    const instrument = InstrumentConstants[
+      InstrumentConstants.map(e => e.instrumentName).indexOf(event.target.value)
+    ];
     const startString = instrument.defaultStringCount - 1;
     this.setState({
-      instrument: instrument.instrumentName,
-      currentNote: "?",
-      desiredString: startString
+      currentNote: '?',
+      desiredString: startString,
     });
   }
 
   error(fretNumber, desiredString) {
-    this.state.errorSound.play();
-    let count = this.state.questionCount;
+    const {
+      errorSound,
+      questionCount,
+      errors,
+      gameMode,
+    } = this.state;
+
+    errorSound.play();
+    let count = questionCount;
     count += 1;
-    let errors = this.state.errors;
-    errors.push({string: desiredString + 1, fret: fretNumber});
-    let correctFret = document.getElementsByClassName(
-      `string-${desiredString} fret-${fretNumber}`
+    errors.push({ string: desiredString + 1, fret: fretNumber });
+    const correctFret = document.getElementsByClassName(
+      `string-${desiredString} fret-${fretNumber}`,
     )[0];
-    correctFret.className += " correct-note";
-    this.setState({ currentNote: "😭", streak: 0, errors, questionCount: count });
+    correctFret.className += ' correct-note';
+    if (gameMode === 'arcade') {
+      this.setState({ isGameEnded: true });
+    } else {
+      this.setState({
+        currentNote: '😭', streak: 0, errors, questionCount: count,
+      });
+    }
   }
 
-  success() {}
-
   render() {
+    const {
+      instrumentId,
+      tuningId,
+      isInstrumentChosen,
+      isTuningChosen,
+      isGameModeChosen,
+      isGameEnded,
+      errors,
+      questionCount,
+      streak,
+      gameMode,
+      desiredString,
+      desiredNote,
+      currentNote,
+    } = this.state;
+
     const allInstruments = getInstrumentList();
 
-    /* 
+    /*
       Start Screen where instrument is selected
-      Show the start screen when isInstrumentChosen == false
+      Show the start screen when
+      isInstrumentChosen == false
     */
 
-    const showStartScreen = !this.state.isInstrumentChosen ? 'start-screen' : 'hidden start-screen';
-    
+    const showStartScreen = !isInstrumentChosen ? 'start-screen' : 'hidden start-screen';
+
     /*
       Tuning Selection Screen where tuning is selected
-      Show the tuning selection screen when isInstrumentChosen == true && isTuningChosen == false
+      Show the tuning selection screen when
+      isInstrumentChosen == true &&
+      isTuningChosen == false
     */
 
-    const showTuningSelectionScreen = this.state.isInstrumentChosen && !this.state.isTuningChosen ? 'tuning-selection' : 'hidden tuning-selection';
-    
+    const showTuningSelectionScreen = isInstrumentChosen && !isTuningChosen ? 'tuning-selection' : 'hidden tuning-selection';
+
     /*
       Game Mode Screen where game mode is selected
-      Show game mode selection screen when isInstrumentChosen == true && isTuningChosen == true && isGameModeChosen == false
+      Show game mode selection screen when
+      isInstrumentChosen == true &&
+      isTuningChosen == true &&
+      isGameModeChosen == false
     */
 
-    const showGameModeSelectionScreen = this.state.isInstrumentChosen && this.state.isTuningChosen && !this.state.isGameModeChosen ? 'game-mode-selection' : 'hidden game-mode-selection';
+    const showGameModeSelectionScreen = isInstrumentChosen && isTuningChosen && !isGameModeChosen ? 'game-mode-selection' : 'hidden game-mode-selection';
 
     /*
       Game Screen where game is played
-      Show game screen when isInstrumentChosen == true && isTuningChosen == true && isGameModeChosen == true
+      Show game screen when
+      isInstrumentChosen == true &&
+      isTuningChosen == true &&
+      isGameModeChosen == true
     */
 
-    const showGamePlayScreen = this.state.isInstrumentChosen && this.state.isTuningChosen && this.state.isGameModeChosen && !this.state.isGameEnded ? 'game-play' : 'game-play hidden';
-    
+    const showGamePlayScreen = isInstrumentChosen && isTuningChosen && isGameModeChosen && !isGameEnded ? 'game-play' : 'game-play hidden';
+
     /*
       Statistics screen that shows after game has ended
-      Show statistics screen when isInstrumentChosen == true && isTuningChosen == true && isGameModeChosen == true && isGameEnded == true
+      Show statistics screen when
+      isInstrumentChosen == true &&
+      isTuningChosen == true &&
+      isGameModeChosen == true &&
+      isGameEnded == true
     */
 
-    const showGameStatisticsScreen = this.state.isGameEnded ? 'game-score' : 'hidden game-score';
+    const showGameStatisticsScreen = isGameEnded ? 'game-score' : 'hidden game-score';
 
-    const statistics = this.state.isGameEnded ? <GameStatisticsScreen instrumentId={this.state.instrumentId} tuningId={this.state.tuningId} errors={this.state.errors} questionCount={this.state.questionCount}/> : '' ;
+    const statistics = isGameEnded ? <GameStatisticsScreen instrumentId={instrumentId} tuningId={tuningId} errors={errors} questionCount={questionCount} /> : '';
 
     return (
       <div className="App">
@@ -271,53 +323,68 @@ class App extends Component {
           <TuningSelector
             handleGoBack={this.handleGoBack}
             handleTuningSelection={this.handleTuningSelection}
-            instrument={getInstrumentByInstrumentId(this.state.instrumentId)}
+            instrument={getInstrumentByInstrumentId(instrumentId)}
           />
         </section>
 
         <section className={showGameModeSelectionScreen}>
-          <GameModeSelector 
+          <GameModeSelector
             handleGoBack={this.handleGoBack}
             handleGameModeSelection={this.handleGameModeSelection}
-            instrument={getInstrumentByInstrumentId(this.state.instrumentId)}
+            instrument={getInstrumentByInstrumentId(instrumentId)}
           />
         </section>
 
         <section className={showGamePlayScreen} id="game">
           <h4>
-            {getInstrumentNameByInstrumentId(this.state.instrumentId)} -{" "}
-            {getTuningNameByInstrumentIdAndTuningId(
-              this.state.instrumentId,
-              this.state.tuningId
-            )}
+            {getInstrumentNameByInstrumentId(instrumentId)}
+
+            {getTuningNameByInstrumentIdAndTuningId(instrumentId, tuningId)}
           </h4>
-          <h6>{this.state.gameMode}</h6>
-          <h5>Current Streak: {this.state.streak}</h5>
-          {/* <h6>Tuning: {getStringNamesByInstrumentIdAndTuningId(this.state.instrumentId, this.state.tuningId)}</h6> */}
+          <h6>
+            { gameMode }
+          </h6>
+          <h5>
+            Current Streak:
+            { streak }
+          </h5>
+
           <FretBoard
             clickHandler={this.clickHandler}
-            instrumentId={this.state.instrumentId}
-            tuningId={this.state.tuningId}
-            desiredString={this.state.desiredString}
-            instrument={getInstrumentNameByInstrumentId(this.state.instrumentId)}
+            instrumentId={instrumentId}
+            tuningId={tuningId}
+            desiredString={desiredString}
+            instrument={getInstrumentNameByInstrumentId(instrumentId)}
           />
-          <div className={"note-container"}>
+          <div className="note-container">
             <DesiredDisplay
-              note={this.state.desiredNote}
-              stringNumber={this.state.desiredString + 1}
-              stringName={getStringNameByInstrumentIdTuningIdAndStringNumber(this.state.instrumentId, this.state.tuningId, this.state.desiredString)}
+              note={desiredNote}
+              stringNumber={desiredString + 1}
+              stringName={
+                getStringNameByInstrumentIdTuningIdAndStringNumber(
+                  instrumentId,
+                  tuningId,
+                  desiredString,
+                )
+              }
             />
-            <NoteDisplay note={this.state.currentNote} />
+            <NoteDisplay note={currentNote} />
           </div>
 
           <div>
-            <button className={'end-free-play'}onClick={this.handleEndFreePlayMode}>End Free Play</button>
+            <button type="button" className="end-free-play" onClick={this.handleEndFreePlayMode}>
+              End Free Play
+            </button>
           </div>
         </section>
+
         <section className={showGameStatisticsScreen}>
-            {statistics}
-            <button className={'end-free-play'} onClick={this.handleTryAgain}>Try Again</button>
+          {statistics}
+          <button type="button" className="end-free-play" onClick={this.handleTryAgain}>
+            Try Again
+          </button>
         </section>
+
         <Footer />
       </div>
     );

@@ -1,5 +1,62 @@
-import { InstrumentConstants } from "./constants/instrumentConstants.js";
-import { Notes } from "./constants/notes.js";
+import { InstrumentConstants } from './constants/instrumentConstants';
+import { Notes } from './constants/notes';
+
+/**
+ *
+ * @param {number} instrumentId
+ * @param {number} tuningId
+ */
+export function getStringCountByInstrumentIdAndTuningId(
+  instrumentId,
+  tuningId,
+) {
+  const instrument = InstrumentConstants.find(
+    inst => inst.instrumentId === instrumentId,
+  );
+  const tuning = instrument.tunings.find(
+    tune => tune.tuningId === tuningId,
+  );
+  return tuning.stringCount;
+}
+
+/**
+ *
+ * @param {number} instrumentId
+ * @param {number} tuningId
+ */
+export function getStringNamesByInstrumentIdAndTuningId(
+  instrumentId,
+  tuningId,
+) {
+  const instrument = InstrumentConstants.find(
+    inst => inst.instrumentId === instrumentId,
+  );
+  const tuning = instrument.tunings.find(
+    tune => tune.tuningId === tuningId,
+  );
+
+  return tuning.stringNames;
+}
+
+/**
+ *
+ * @param {*} instrumentId
+ * @param {*} tuningId
+ * @param {*} stringNumber
+ */
+export function getStringNameByInstrumentIdTuningIdAndStringNumber(
+  instrumentId,
+  tuningId,
+  stringNumber,
+) {
+  const instrument = InstrumentConstants.find(
+    inst => inst.instrumentId === instrumentId,
+  );
+  const tuning = instrument.tunings.find(
+    tune => tune.tuningId === tuningId,
+  );
+  return tuning.stringNames[stringNumber];
+}
 
 /**
  *
@@ -19,23 +76,27 @@ export function getNoteByNumber(num) {
 }
 
 /**
- * 
- * @param {object} errorArray 
- * @param {number} instrumentId 
- * @param {number} tuningId 
+ *
+ * @param {object} errorArray
+ * @param {number} instrumentId
+ * @param {number} tuningId
  */
 export function getChartDataByErrorArray(errorArray, instrumentId, tuningId) {
   // find the number of strings on the instrument
 
   const stringCount = getStringCountByInstrumentIdAndTuningId(instrumentId, tuningId);
   function getCount(num) {
-    return errorArray.filter( error => error.string === num ).length;
+    return errorArray.filter(error => error.string === num).length;
   }
   const er = [];
-  for (var i = 1; i <= stringCount; i++) {
-    er.push({name: getStringNameByInstrumentIdTuningIdAndStringNumber(instrumentId, tuningId, i), count: getCount(i)});
+  for (let i = 1; i <= stringCount; i += 1) {
+    er.push(
+      {
+        name: getStringNameByInstrumentIdTuningIdAndStringNumber(instrumentId, tuningId, i),
+        count: getCount(i),
+      },
+    );
   }
-  console.log(er);
 
   return er.reverse();
 }
@@ -53,7 +114,7 @@ export function getInstrumentList() {
  */
 export function getInstrumentByInstrumentId(instrumentId) {
   return InstrumentConstants.find(
-    instrument => instrument.instrumentId === instrumentId
+    instrument => instrument.instrumentId === instrumentId,
   );
 }
 
@@ -63,7 +124,7 @@ export function getInstrumentByInstrumentId(instrumentId) {
  */
 export function getInstrumentNameByInstrumentId(instrumentId) {
   const instrument = InstrumentConstants.find(
-    instrument => instrument.instrumentId === instrumentId
+    inst => inst.instrumentId === instrumentId,
   );
   return instrument.instrumentName;
 }
@@ -75,7 +136,7 @@ export function getInstrumentNameByInstrumentId(instrumentId) {
  */
 export function getTuningByInstrumentIdAndTuningId(instrumentId, tuningId) {
   const instrument = InstrumentConstants.find(
-    instrument => instrument.instrumentId === instrumentId
+    inst => inst.instrumentId === instrumentId,
   );
   return instrument.tunings.find(tuning => tuning.tuningId === tuningId);
 }
@@ -87,70 +148,14 @@ export function getTuningByInstrumentIdAndTuningId(instrumentId, tuningId) {
  */
 export function getTuningNameByInstrumentIdAndTuningId(instrumentId, tuningId) {
   const instrument = InstrumentConstants.find(
-    instrument => instrument.instrumentId === instrumentId
+    inst => inst.instrumentId === instrumentId,
   );
   const tuning = instrument.tunings.find(
-    tuning => tuning.tuningId === tuningId
+    tune => tune.tuningId === tuningId,
   );
   return tuning.tuningName;
 }
 
-/**
- *
- * @param {*} instrumentId
- * @param {*} tuningId
- * @param {*} stringNumber
- */
-export function getStringNameByInstrumentIdTuningIdAndStringNumber(
-  instrumentId,
-  tuningId,
-  stringNumber
-) {
-  const instrument = InstrumentConstants.find(
-    instrument => instrument.instrumentId === instrumentId
-  );
-  const tuning = instrument.tunings.find(
-    tuning => tuning.tuningId === tuningId
-  );
-  return tuning.stringNames[stringNumber];
-}
-
-/**
- *
- * @param {number} instrumentId
- * @param {number} tuningId
- */
-export function getStringCountByInstrumentIdAndTuningId(
-  instrumentId,
-  tuningId
-) {
-  const instrument = InstrumentConstants.find(
-    instrument => instrument.instrumentId === instrumentId
-  );
-  const tuning = instrument.tunings.find(
-    tuning => tuning.tuningId === tuningId
-  );
-  return tuning.stringCount;
-}
-
-/**
- *
- * @param {number} instrumentId
- * @param {number} tuningId
- */
-export function getStringNamesByInstrumentIdAndTuningId(
-  instrumentId,
-  tuningId
-) {
-  const instrument = InstrumentConstants.find(
-    instrument => instrument.instrumentId === instrumentId
-  );
-  const tuning = instrument.tunings.find(
-    tuning => tuning.tuningId === tuningId
-  );
-
-  return tuning.stringNames;
-}
 /**
  *
  * @param {number} instrumentId
@@ -162,13 +167,13 @@ export function getFretNumberByInstrumentIdTuningIdStringNumberAndNoteName(
   instrumentId,
   tuningId,
   stringNumber,
-  noteName
+  noteName,
 ) {
   const instrument = InstrumentConstants.find(
-    instrument => instrument.instrumentId === instrumentId
+    inst => inst.instrumentId === instrumentId,
   );
   const tuning = instrument.tunings.find(
-    tuning => tuning.tuningId === tuningId
+    tune => tune.tuningId === tuningId,
   );
   const stringName = tuning.stringNames[stringNumber + 1].toUpperCase();
   const stringNameIndex = Notes.indexOf(stringName);
@@ -190,17 +195,16 @@ export function getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(
   instrumentId,
   tuningId,
   stringNumber,
-  fretNumber
+  fretNumber,
 ) {
   const tuning = getTuningByInstrumentIdAndTuningId(instrumentId, tuningId);
   const stringName = tuning.stringNames[stringNumber + 1].toUpperCase();
 
   // Where the string name falls in the chromatic scale
   const stringNameIndex = Notes.indexOf(stringName);
-  const newNoteIndex =
-    stringNameIndex + fretNumber > 11
-      ? stringNameIndex + fretNumber - 12
-      : stringNameIndex + fretNumber;
+  const newNoteIndex = (stringNameIndex + fretNumber) > 11
+    ? stringNameIndex + fretNumber - 12
+    : stringNameIndex + fretNumber;
   const newNoteName = Notes[newNoteIndex];
 
   return newNoteName;
