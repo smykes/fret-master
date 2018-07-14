@@ -7,7 +7,6 @@ import { getInstrumentByInstrumentId, getTuningByInstrumentIdAndTuningId } from 
 class FretBoard extends Component {
   render() {
     const { 
-      instrument,
       instrumentId,
       tuningId,
       desiredString,
@@ -43,5 +42,4 @@ FretBoard.proptypes = {
     tuningId: PropTypes.number,
     desiredString: PropTypes.number,
     clickHandler: PropTypes.func,
-    instrument: PropTypes.object,
 }
