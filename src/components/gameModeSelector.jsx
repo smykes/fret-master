@@ -16,15 +16,15 @@ const GameModeSelector = (props) => {
       </h1>
       <h3>
         - Chose
-        {instrument.instrumentName} 
+        {instrument.instrumentName}
         Game Mode -
       </h3>
-      <div className={'tuning-selector-item'} onClick={() => handleGameModeSelection('freeplay')}>
+      <button type="button" className="tuning-selector-item" onClick={() => handleGameModeSelection('freeplay')}>
         Free Play
-      </div>
-      <div className={'tuning-selector-item'} onClick={() => handleGameModeSelection('arcade')}>
+      </button>
+      <button type="button" className="tuning-selector-item" onClick={() => handleGameModeSelection('arcade')}>
         Arcade
-      </div>
+      </button>
       <button type="button" onClick={handleGoBack}>
         Go Back
       </button>
@@ -33,7 +33,9 @@ const GameModeSelector = (props) => {
 };
 
 GameModeSelector.propTypes = {
-  instrument: PropTypes.object.isRequired,
+  instrument: PropTypes.shape({
+    instrumentName: PropTypes.string.isRequired,
+  }).isRequired,
   handleGameModeSelection: PropTypes.func.isRequired,
   handleGoBack: PropTypes.func.isRequired,
 };

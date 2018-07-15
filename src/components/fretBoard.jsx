@@ -5,7 +5,6 @@ import '../css/fret-board.css';
 import { getInstrumentByInstrumentId, getTuningByInstrumentIdAndTuningId } from '../methods';
 
 const FretBoard = (props) => {
-  console.log(props);
   const {
     instrumentId,
     tuningId,
@@ -42,6 +41,10 @@ FretBoard.propTypes = {
   tuningId: PropTypes.number.isRequired,
   desiredString: PropTypes.number,
   clickHandler: PropTypes.func.isRequired,
+};
+
+FretBoard.defaultProps = {
+  desiredString: 6,
 };
 
 export default FretBoard;

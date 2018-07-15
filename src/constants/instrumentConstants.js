@@ -54,9 +54,9 @@ const InstrumentConstants = [
       },
     ],
     neckDimensions: {
-      6: { width: 252, length: 975, },
-      7: { width: 302, length: 975, },
-      8: { width: 352, length: 975, },
+      6: { width: 252, length: 975 },
+      7: { width: 302, length: 975 },
+      8: { width: 352, length: 975 },
     },
     tunings: [
       {
@@ -69,8 +69,8 @@ const InstrumentConstants = [
           3: 'g',
           4: 'd',
           5: 'a',
-          6: 'e'
-        }
+          6: 'e',
+        },
       },
 
       {
@@ -102,21 +102,45 @@ const InstrumentConstants = [
         tuningId: 4,
         tuningName: 'Double Dropped D',
         stringCount: 6,
-        stringNames: { 1: 'd', 2: 'b', 3: 'g', 4: 'd', 5: 'a', 6: 'd' },
+        stringNames: {
+          1: 'd',
+          2: 'b',
+          3: 'g',
+          4: 'd',
+          5: 'a',
+          6: 'd',
+        },
       },
       {
         tuningId: 5,
         tuningName: 'Open C',
         stringCount: 7,
-        stringNames: { 1: 'e', 2: 'c', 3: 'g', 4: 'c', 5: 'g', 6: 'c', 7: 'g' }
+        stringNames: {
+          1: 'e',
+          2: 'c',
+          3: 'g',
+          4: 'c',
+          5: 'g',
+          6: 'c',
+          7: 'g',
+        },
       },
       {
         tuningId: 6,
         tuningName: '8 String Standard (Charlie Hunter Tuning)',
         stringCount: 8,
-        stringNames: { 1: 'e', 2: 'b', 3: 'g', 4: 'a', 5: 'e', 6: 'd', 7: 'a', 8: 'e' }
+        stringNames: {
+          1: 'e',
+          2: 'b',
+          3: 'g',
+          4: 'a',
+          5: 'e',
+          6: 'd',
+          7: 'a',
+          8: 'e',
+        },
       },
-    ]
+    ],
   },
   {
     instrumentId: 1,
@@ -182,37 +206,71 @@ const InstrumentConstants = [
         tuningId: 0,
         tuningName: 'Standard',
         stringCount: 4,
-        stringNames: { 1: 'g', 2: 'd', 3: 'a', 4: 'e' },
+        stringNames: {
+          1: 'g',
+          2: 'd',
+          3: 'a',
+          4: 'e',
+        },
       },
       {
         tuningId: 1,
         tuningName: 'Drop D',
         stringCount: 4,
-        stringNames: { 1: 'g', 2: 'd', 3: 'a', 4: 'd' },
+        stringNames: {
+          1: 'g',
+          2: 'd',
+          3: 'a',
+          4: 'd',
+        },
       },
       {
         tuningId: 2,
         tuningName: 'Drop C',
         stringCount: 4,
-        stringNames: { 1: 'f', 2: 'c', 3: 'g', 4: 'c' },
+        stringNames: {
+          1: 'f',
+          2: 'c',
+          3: 'g',
+          4: 'c',
+        },
       },
       {
         tuningId: 3,
         tuningName: '5 String Standard',
         stringCount: 5,
-        stringNames: { 1: 'g', 2: 'd', 3: 'a', 4: 'e', 5: 'b' },
+        stringNames: {
+          1: 'g',
+          2: 'd',
+          3: 'a',
+          4: 'e',
+          5: 'b',
+        },
       },
       {
         tuningId: 4,
         tuningName: '5 String Tenor',
         stringCount: 5,
-        stringNames: { 1: 'c', 2: 'g', 3: 'd', 4: 'a', 5: 'e' },
+        stringNames: {
+          1: 'c',
+          2: 'g',
+          3: 'd',
+          4: 'a',
+          5: 'e',
+        },
       },
       {
         tuningId: 5,
         tuningName: '6 String',
         stringCount: 6,
-        stringNames: { 1: 'b', 2: 'e', 3: 'a', 4: 'd', 5: 'g', 6: 'c' },
+        stringNames: {
+          1: 'b',
+          2: 'e',
+          3: 'a',
+          4: 'd',
+          5: 'g',
+          6: 'c',
+        },
       },
     ],
   },
@@ -223,51 +281,51 @@ const InstrumentConstants = [
     fretSpacing: [
       {
         width: 31.69,
-        marker: false
+        marker: false,
       },
       {
         width: 29.591,
-        marker: false
+        marker: false,
       },
       {
         width: 27.94,
-        marker: true
+        marker: true,
       },
       {
         width: 26.3906,
-        marker: false
+        marker: false,
       },
       {
         width: 24.892,
-        marker: true
+        marker: true,
       },
       {
         width: 23.3934,
-        marker: false
+        marker: false,
       },
       {
         width: 22.1742,
-        marker: true
+        marker: true,
       },
       {
         width: 20.9296,
-        marker: false
+        marker: false,
       },
       {
         width: 19.7612,
-        marker: false
+        marker: false,
       },
       {
         width: 18.6436,
-        marker: false
+        marker: false,
       },
       {
         width: 17.6022,
-        marker: false
+        marker: false,
       },
       {
         width: 16.6116,
-        marker: true
+        marker: true,
       },
     ],
     neckDimensions: {
@@ -278,17 +336,27 @@ const InstrumentConstants = [
         tuningId: 0,
         tuningName: 'Concert',
         stringCount: 4,
-        stringNames: { 1: 'a', 2: 'e', 3: 'c', 4: 'g' },
+        stringNames: {
+          1: 'a',
+          2: 'e',
+          3: 'c',
+          4: 'g',
+        },
       },
       {
         tuningId: 1,
         tuningName: 'Baritone',
         stringCount: 4,
-        stringNames: { 1: 'e', 2: 'b', 3: 'g', 4: 'd' }
+        stringNames: {
+          1: 'e',
+          2: 'b',
+          3: 'g',
+          4: 'd',
+        },
       },
     ],
   },
-]
+];
 // {
 //     instrumentId: 4,
 //     instrumentName: 'Charango',
@@ -423,22 +491,6 @@ const InstrumentConstants = [
 // }
 
 
-export {
+export default {
   InstrumentConstants,
 };
-
-// getInstrumentList
-
-// getInstruentByInstrumentId
-// getInstrumentByInstrumentName
-// getInstrumentIdByInstrumentName
-// getInsturmentNameByInstrumentId
-
-/*--Tunings--*/
-// getAllTuningsByInstrumentId
-// getTuningByInstrumentIdAndTuningId
-// getStringCountByInstrumentIdAndTuningId
-
-/*--Sizing--*/
-// getDimensionsByInstrumentIdAndStringCount
-// getFretSpacingByInstrumentId
