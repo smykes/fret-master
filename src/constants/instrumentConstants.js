@@ -491,6 +491,6 @@ const InstrumentConstants = [
 // }
 
 
-export default {
+export {
   InstrumentConstants,
 };

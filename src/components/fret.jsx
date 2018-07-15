@@ -61,4 +61,9 @@ Fret.propTypes = {
   instrumentId: PropTypes.number.isRequired,
 };
 
+
+Fret.defaultProps = {
+  desiredString: 6,
+};
+
 export default Fret;

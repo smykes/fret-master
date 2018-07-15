@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   BarChart,
   Bar,
@@ -6,13 +6,14 @@ import {
   YAxis,
   CartesianGrid,
   Legend
-} from "recharts";
+} from 'recharts';
 import {
   getInstrumentNameByInstrumentId,
   getTuningNameByInstrumentIdAndTuningId,
   getChartDataByErrorArray,
-} from "../methods.js";
-import "../css/statistics-screen.css";
+} from '../methods';
+import '../css/statistics-screen.css';
+
 class GameStatisticsScreen extends Component {
   render() {
     const errorCount = this.props.errors.length;
