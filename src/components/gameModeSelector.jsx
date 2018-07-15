@@ -15,9 +15,9 @@ const GameModeSelector = (props) => {
         Fret Master
       </h1>
       <h3>
-        - Chose
+        - Chose&nbsp;
         {instrument.instrumentName}
-        Game Mode -
+        &nbsp;Game Mode -
       </h3>
       <button type="button" className="tuning-selector-item" onClick={() => handleGameModeSelection('freeplay')}>
         Free Play

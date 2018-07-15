@@ -5,7 +5,7 @@ import './css/string-selector.css';
 import FretBoard from './components/fretBoard';
 import NoteDisplay from './components/noteDisplay';
 import DesiredDisplay from './components/desiredDisplay';
-import Footer from './components/footer.jsx';
+import Footer from './components/footer';
 import StartScreen from './components/startScreen';
 import TuningSelector from './components/tuningSelector';
 import GameModeSelector from './components/gameModeSelector';
@@ -338,7 +338,7 @@ class App extends Component {
         <section className={showGamePlayScreen} id="game">
           <h4>
             {getInstrumentNameByInstrumentId(instrumentId)}
-
+            &nbsp;
             {getTuningNameByInstrumentIdAndTuningId(instrumentId, tuningId)}
           </h4>
           <h6>
@@ -346,6 +346,7 @@ class App extends Component {
           </h6>
           <h5>
             Current Streak:
+            &nbsp;
             { streak }
           </h5>
 

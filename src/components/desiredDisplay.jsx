@@ -10,9 +10,6 @@ const DesiredDisplay = (props) => {
       {stringNumber}
       |
       {note}
-      <div>
-        Round 1
-      </div>
     </div>
   );
 };

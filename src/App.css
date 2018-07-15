@@ -11,6 +11,7 @@ h1 {
   font-size: 144px;
   margin-top: 10px;
   margin-bottom: 10px;
+  text-shadow: 2px 2px 2px red;
 }
 h4,h3 {
   color: white;
@@ -42,4 +43,13 @@ h5, h6 {
   text-align: center;
   margin: 0 auto;
   display: block;
+}
+
+button {
+  display: block;
+  margin: 5px auto;
+  text-align: center;
+}
+button:hover {
+  border-radius: 0;
 }

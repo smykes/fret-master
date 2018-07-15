@@ -51,7 +51,9 @@ class Fret extends Component {
 }
 
 Fret.propTypes = {
-  tuning: PropTypes.object.isRequired,
+  tuning: PropTypes.shape({
+    stringNames: PropTypes.array.isRequired,
+  }).isRequired,
   fretNumber: PropTypes.number.isRequired,
   desiredString: PropTypes.number,
   clickHandler: PropTypes.func.isRequired,
@@ -60,7 +62,6 @@ Fret.propTypes = {
   tuningId: PropTypes.number.isRequired,
   instrumentId: PropTypes.number.isRequired,
 };
-
 
 Fret.defaultProps = {
   desiredString: 6,
