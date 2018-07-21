@@ -29,7 +29,7 @@ const TuningSelector = (props) => {
       <h1>
         Fret Master
       </h1>
-      <h3>
+      <h3 className="animated infinite flash">
         - Chose &nbsp;
         {instrumentName}
         &nbsp;Configuration -

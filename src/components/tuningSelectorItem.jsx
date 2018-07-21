@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import '../css/tuning-selector.css';
+import '../css/buttons.css';
 
 const TuningSelectorItem = (props) => {
   const {
@@ -10,9 +11,9 @@ const TuningSelectorItem = (props) => {
     name,
   } = props;
   return (
-    <button type="button" className="tuning-selector-item" onClick={() => handleTuningSelection(tuningId)}>
+    <button type="button" className="btn btn-outline tuning-selector-item" onClick={() => handleTuningSelection(tuningId)}>
       {stringCount}
-      String -
+      &nbsp;String -
       {name}
     </button>
   );

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import '../css/game-mode.css';
+import '../css/buttons.css';
 
 const GameModeSelector = (props) => {
   const {
@@ -14,15 +15,15 @@ const GameModeSelector = (props) => {
       <h1>
         Fret Master
       </h1>
-      <h3>
+      <h3 className="infinite flash animated">
         - Chose&nbsp;
         {instrument.instrumentName}
         &nbsp;Game Mode -
       </h3>
-      <button type="button" className="tuning-selector-item" onClick={() => handleGameModeSelection('freeplay')}>
+      <button type="button" className="btn btn-outline tuning-selector-item" onClick={() => handleGameModeSelection('freeplay')}>
         Free Play
       </button>
-      <button type="button" className="tuning-selector-item" onClick={() => handleGameModeSelection('arcade')}>
+      <button type="button" className="btn btn-outline tuning-selector-item" onClick={() => handleGameModeSelection('arcade')}>
         Arcade
       </button>
       <button type="button" onClick={handleGoBack}>

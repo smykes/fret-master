@@ -336,19 +336,17 @@ class App extends Component {
         </section>
 
         <section className={showGamePlayScreen} id="game">
-          <h4>
+          <h6>
             {getInstrumentNameByInstrumentId(instrumentId)}
             &nbsp;
             {getTuningNameByInstrumentIdAndTuningId(instrumentId, tuningId)}
-          </h4>
-          <h6>
+
             { gameMode }
-          </h6>
-          <h5>
+
             Current Streak:
             &nbsp;
             { streak }
-          </h5>
+          </h6>
 
           <FretBoard
             clickHandler={this.clickHandler}

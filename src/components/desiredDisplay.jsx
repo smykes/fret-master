@@ -8,7 +8,7 @@ const DesiredDisplay = (props) => {
   return (
     <div className="desired-display">
       {stringNumber}
-      |
+      :
       {note}
     </div>
   );

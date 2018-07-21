@@ -2,4 +2,5 @@
 div.tuning-selector-item {
     margin: 10px;
     cursor: pointer;
+    font-size: 18px;
 }

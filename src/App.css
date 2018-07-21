@@ -1,14 +1,14 @@
-@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
-
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
 body {
   background: #212121;
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Press Start 2P', cursive;
   color: white;
+  padding: 25px 0;
 }
 h1 {
   text-align: center;
   color: white;
-  font-size: 144px;
+  font-size: 72px;
   margin-top: 10px;
   margin-bottom: 10px;
   text-shadow: 2px 2px 2px red;
@@ -16,9 +16,9 @@ h1 {
 h4,h3 {
   color: white;
   text-align: center;
-  font-size: 44px;
+  font-size: 22px;
   margin-top: 0;
-  margin-bottom: 0;
+  margin-bottom: 40px;
 }
 h5, h6 {
   color: white;
@@ -52,4 +52,7 @@ button {
 }
 button:hover {
   border-radius: 0;
+}
+.game-play-header {
+  font-size: 14px;
 }

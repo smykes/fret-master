@@ -1,0 +1,18 @@
+.btn.btn-outline {
+    background: transparent;
+    border: 0;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 5px;
+}
+.btn.btn-outline:hover {
+    color: #fff;
+    text-shadow: 2px 2px 2px red;
+}
+
+.btn.btn-outline:hover:before {
+    content: '*';
+}
+.btn.btn-outline:hover:after {
+    content: '*';
+}

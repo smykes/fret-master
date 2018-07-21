@@ -3,10 +3,13 @@ import '../css/footer.css';
 
 const Footer = () => (
   <footer className="footer">
-    Guitar, Bass Guitar, Mandolin, and Braritone Ukulele, Charango, Baglamas
-    icons by Datacrafted from the Noun Project
+    Created with
+    <span role="img" aria-label="heart">
+    💝
+    </span>
+    in Chicago by Jeff Smykil - 2018
     <br />
-    Created with 💝 in Chicago by Jeff Smykil
+    Instrument icons by Datacrafted from the Noun Project
   </footer>
 );
 

@@ -1,7 +1,7 @@
 .start-screen {
   color: white;
   text-align: center;
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Press Start 2P', cursive
 }
 
 .start-screen h3 {
@@ -12,7 +12,7 @@
 button {
   background: transparent;
   color: white;
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Press Start 2P', cursive
 }
 button:hover {
   background: white;
