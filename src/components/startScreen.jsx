@@ -4,6 +4,7 @@ import '../css/start-screen.css';
 import '../css/animate.css';
 
 import InstrumentSelector from './instrumentSelector';
+import Header from './header';
 
 const StartScreen = (props) => {
   const {
@@ -22,12 +23,13 @@ const StartScreen = (props) => {
   ));
   return (
     <section className="start-screen">
-      <h1 className="animated rubberBand">
-        Fret Master
-      </h1>
-      <h3 className="animated infinite flash">
-        - Chose an Instrument to Start -
-      </h3>
+      <Header
+        headerText="Fret Master"
+        headerAnimatedType="rubberBand animated"
+        subHeaderText="- Choose an Instrument to Start -"
+        subHeaderAnimatedType="flash animated infinite"
+      />
+
       <div>
         {options}
       </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Header from './header';
 import '../css/game-mode.css';
 import '../css/buttons.css';
 
@@ -9,17 +10,17 @@ const GameModeSelector = (props) => {
     handleGameModeSelection,
     handleGoBack,
   } = props;
-
+  function getSubHeaderText() {
+    return `- Chose ${instrument.instrumentName} Game Mode -`;
+  }
   return (
     <section className="game-mode">
-      <h1>
-        Fret Master
-      </h1>
-      <h3 className="infinite flash animated">
-        - Chose&nbsp;
-        {instrument.instrumentName}
-        &nbsp;Game Mode -
-      </h3>
+      <Header
+        headerText="FretMaster"
+        headerAnimatedType=""
+        subHeaderText={getSubHeaderText()}
+        subHeaderAnimatedType="animated infinite flash"
+      />
       <button type="button" className="btn btn-outline tuning-selector-item" onClick={() => handleGameModeSelection('freeplay')}>
         Free Play
       </button>

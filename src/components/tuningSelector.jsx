@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TuningSelectorItem from './tuningSelectorItem';
+import Header from './header';
 import '../css/tuning-selector.css';
 
 const TuningSelector = (props) => {
@@ -14,6 +15,10 @@ const TuningSelector = (props) => {
     instrumentName,
   } = instrument;
 
+  function getSubheaderText() {
+    return `- Chose ${instrumentName} configuration -`;
+  }
+
   const options = instrument.tunings.map(tuning => (
     <TuningSelectorItem
       handleTuningSelection={handleTuningSelection}
@@ -25,15 +30,15 @@ const TuningSelector = (props) => {
   ));
 
   return (
+
     <section className="start-screen">
-      <h1>
-        Fret Master
-      </h1>
-      <h3 className="animated infinite flash">
-        - Chose &nbsp;
-        {instrumentName}
-        &nbsp;Configuration -
-      </h3>
+      <Header
+        headerText="FretMaster"
+        headerAnimatedType=""
+        subHeaderText={getSubheaderText()}
+        subHeaderAnimatedType="animated infinite flash"
+      />
+
       <span>
         {options}
       </span>
