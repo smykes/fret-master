@@ -53,7 +53,6 @@ class String extends Component {
     const note = debug ? getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(instrumentId, tuningId, stringNumber, fretNumber) : '';
     return (
       <div
-        role="button"
         onClick={() => clickHandler(noteNames, number, string, stringNumber)}
         className={stringClass}>
         <div className="label">

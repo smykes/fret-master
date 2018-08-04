@@ -10,6 +10,7 @@ import StartScreen from './components/startScreen';
 import TuningSelector from './components/tuningSelector';
 import GameModeSelector from './components/gameModeSelector';
 import GameStatisticsScreen from './components/gameStatisticsScreen';
+import TimingDisplay from './components/timingDisplay';
 import { InstrumentConstants } from './constants/instrumentConstants';
 
 import {
@@ -57,6 +58,13 @@ class App extends Component {
       gameMode: false, // game modes are freestyle or arcade
       instrumentId,
       tuningId,
+      // Arcade mode specific state
+      lives: 0,
+      ogTimer: 60,
+      timer: 60,
+      interval: 1000,
+      timeout: null,
+      round: 1,
     };
 
     this.clickHandler = this.clickHandler.bind(this);
@@ -68,11 +76,13 @@ class App extends Component {
     this.handleGameModeSelection = this.handleGameModeSelection.bind(this);
     this.handleEndFreePlayMode = this.handleEndFreePlayMode.bind(this);
     this.handleTryAgain = this.handleTryAgain.bind(this);
+    this.handleTick = this.handleTick.bind(this);
   }
 
   /* -- Event Handlers -- */
 
   handleTryAgain() {
+    const { timeout } = this.state;
     this.setState({
       isInstrumentChosen: false,
       isTuningChosen: false,
@@ -81,7 +91,26 @@ class App extends Component {
       questionCount: 0,
       errors: [],
       streak: 0,
+      gameMode: null,
+      timer: 60,
+      timeout: clearTimeout(timeout),
     });
+  }
+
+  handleTick() {
+    const { timer, interval } = this.state;
+    const newTime = timer - 1;
+    if (timer > 0) {
+      this.setState({
+        timer: newTime,
+        timeout: setTimeout(() => { this.handleTick(); }, interval),
+      });
+    } else {
+      this.setState({
+        timer: 60,
+        isGameEnded: true,
+      });
+    }
   }
 
   handleEndFreePlayMode() {
@@ -125,6 +154,9 @@ class App extends Component {
       correctSound,
       streak,
       questionCount,
+      timer,
+      round,
+      ogTimer,
     } = this.state;
     const clickedNote = getNoteNameByInstrumentIdTuningIdStringNumberAndFretNumber(
       instrumentId,
@@ -145,6 +177,15 @@ class App extends Component {
         ? desiredString - 1
         : numberOfStrings - 1;
       const newStreak = streak;
+      let newTimer = timer;
+      let newRound = round;
+      if (questionCount % 6 === 0 && questionCount !== 0) {
+        newRound = round + 1;
+        newTimer = ogTimer - (round * 5);
+      }
+      // if (newStreak % 3 === 0) {
+      //   newTimer = timer + 3;
+      // }
       const randNo = getRandomNumber(0, 11);
       const randNote = getNoteByNumber(randNo);
       let count = questionCount;
@@ -160,6 +201,8 @@ class App extends Component {
         desiredNote: randNote,
         streak: newStreak + 1,
         questionCount: count,
+        timer: newTimer,
+        round: newRound,
       });
     } else {
       this.error(
@@ -233,7 +276,7 @@ class App extends Component {
     )[0];
     correctFret.className += ' correct-note';
     if (gameMode === 'arcade') {
-      this.setState({ isGameEnded: true });
+      this.setState({ isGameEnded: true, gameMode: null, timer: 60 });
     } else {
       this.setState({
         currentNote: '😭', streak: 0, errors, questionCount: count,
@@ -256,6 +299,8 @@ class App extends Component {
       desiredString,
       desiredNote,
       currentNote,
+      timer,
+      round,
     } = this.state;
 
     const allInstruments = getInstrumentList();
@@ -310,8 +355,19 @@ class App extends Component {
 
     const statistics = isGameEnded ? <GameStatisticsScreen instrumentId={instrumentId} tuningId={tuningId} errors={errors} questionCount={questionCount} /> : '';
 
+    let countdown;
+    if (gameMode === 'arcade' && !isGameEnded) {
+      // CountDown time={timer} handleTick={this.handleTick}
+      countdown = <TimingDisplay round={round} time={timer} handleTick={this.handleTick} />;
+    } else {
+      countdown = '';
+    }
+
     return (
       <div className="App">
+        <section className={showGamePlayScreen}>
+          {countdown}
+        </section>
         <section className={showStartScreen}>
           <StartScreen
             instruments={allInstruments}
@@ -340,8 +396,10 @@ class App extends Component {
             {getInstrumentNameByInstrumentId(instrumentId)}
             &nbsp;
             {getTuningNameByInstrumentIdAndTuningId(instrumentId, tuningId)}
+            &nbsp;
 
             { gameMode }
+            &nbsp;
 
             Current Streak:
             &nbsp;

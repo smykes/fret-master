@@ -8,6 +8,9 @@ import {
   CartesianGrid,
   Legend,
 } from 'recharts';
+
+import Header from './header';
+
 import {
   getInstrumentNameByInstrumentId,
   getTuningNameByInstrumentIdAndTuningId,
@@ -32,13 +35,16 @@ const GameStatisticsScreen = (props) => {
     tuningId,
   );
   const data = getChartDataByErrorArray(errors, instrumentId, tuningId);
-  const percentage = ((questionCount - errorCount) / (questionCount) * 100);
+  const percentage = Math.ceil(((questionCount - errorCount) / (questionCount) * 100));
   return (
     <section className="statistics-screen">
-      <h1>
-        Fret Master
-      </h1>
-      Statistics
+      <Header
+        headerText="FretMaster"
+        headerAnimatedType=""
+        subHeaderText="Statistics"
+        subHeaderAnimatedType="animated flash infinite"
+      />
+
       <div>
         {instrumentName}
           -
@@ -50,8 +56,10 @@ const GameStatisticsScreen = (props) => {
         %
       </div>
       <div>
-        {questionCount}
-        -
+        Correct Answers: &nbsp;
+        {(questionCount - errorCount)}
+        <br />
+        Incorrect Answers: &nbsp;
         {errorCount}
       </div>
       <BarChart
