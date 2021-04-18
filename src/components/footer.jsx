@@ -3,7 +3,7 @@ import '../css/footer.css';
 
 const Footer = () => (
   <footer className="footer">
-    Created with 3 in Chicago by Jeff Smykil - 2018
+    Created with hate in Chicago by Jeff Smykil - 2018
     <br />
     Instrument icons by Datacrafted from the Noun Project
   </footer>

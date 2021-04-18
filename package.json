@@ -2,7 +2,7 @@
   "name": "fret-master",
   "version": "0.1.0",
   "private": false,
-  "homepage": "/dev/fret-master",
+  "homepage": ".",
   "dependencies": {
     "gh-pages": "^1.2.0",
     "howler": "^2.0.13",
